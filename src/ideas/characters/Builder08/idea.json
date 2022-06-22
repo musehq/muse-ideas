@@ -1,0 +1,36 @@
+{
+  "predecessor": "1876b77c-e158-44b5-96d8-305c583f5b99",
+  "id": "4a32ddb8-aa05-4602-b7ba-519508f66436",
+  "name": "Builder08",
+  "purpose": "exist. become humanoid. act and direct users to a call to action. fix rotation, refactor, add hitbox. fix transforms. redo props. fix rotation.",
+  "schema": [
+    {
+      "name": "dialogue",
+      "type": "string"
+    },
+    {
+      "name": "response",
+      "type": "string"
+    },
+    {
+      "name": "anim",
+      "type": "void"
+    },
+    {
+      "name": "link",
+      "type": "string"
+    },
+    {
+      "name": "position",
+      "type": "position"
+    },
+    {
+      "name": "rotation",
+      "type": "rotation"
+    }
+  ],
+  "npm_dependencies": {
+    "culori": "^0.18.2",
+    "react-spring": "9.1.2"
+  }
+}

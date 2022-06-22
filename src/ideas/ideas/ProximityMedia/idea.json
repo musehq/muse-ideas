@@ -1,0 +1,39 @@
+{
+  "predecessor": "1b7e781d-5cfe-46ff-89b2-805f26ece83c",
+  "id": "db54f8cf-55bc-4788-840a-1994e3e6b7a5",
+  "name": "Proximity Media",
+  "purpose": "exist. display user content. present images and videos. make it appear that it is placed on a canvas and accept a link on click. Fix the stupid local props (url->link). hides/shows given a radius.",
+  "schema": [
+    {
+      "name": "media",
+      "type": "image"
+    },
+    {
+      "name": "position",
+      "type": "position"
+    },
+    {
+      "name": "scale",
+      "type": "scale"
+    },
+    {
+      "name": "rotation",
+      "type": "rotation"
+    },
+    {
+      "name": "radius",
+      "type": "number"
+    },
+    {
+      "name": "displayRadius",
+      "type": "boolean"
+    },
+    {
+      "name": "framed",
+      "type": "boolean"
+    }
+  ],
+  "npm_dependencies": {
+    "react-spring": "9.1.2"
+  }
+}

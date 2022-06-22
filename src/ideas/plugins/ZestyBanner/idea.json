@@ -1,0 +1,41 @@
+{
+  "predecessor": "c1d1fb2d-bcb1-46a9-97c9-f0ba1bd3d81f",
+  "id": "d351e206-edb0-4278-adc6-5b79d6a91464",
+  "name": "Zesty Banner",
+  "purpose": "exist. manifest the Zesty Banner. flip beacon flag.",
+  "schema": [
+    {
+      "name": "position",
+      "type": "position"
+    },
+    {
+      "name": "rotation",
+      "type": "rotation"
+    },
+    {
+      "name": "scale",
+      "type": "scale"
+    },
+    {
+      "name": "network",
+      "type": "string"
+    },
+    {
+      "name": "space",
+      "type": "string"
+    },
+    {
+      "name": "format",
+      "type": "string"
+    },
+    {
+      "name": "style",
+      "type": "string"
+    },
+    {
+      "name": "disableBeacon",
+      "type": "boolean"
+    }
+  ],
+  "npm_dependencies": {}
+}

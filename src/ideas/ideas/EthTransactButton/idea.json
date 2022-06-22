@@ -1,0 +1,42 @@
+{
+  "predecessor": "03685cee-320c-408f-b59a-926be682eca8",
+  "id": "826102ef-f535-414f-9ae9-a1e740b05442",
+  "name": "Eth Transact Button",
+  "purpose": "exist. allow users to send eth. custom walletconnect build. clean prop order, remove node-fetch. debug send transaction. remove collider. add missing package. visual upgrade. fix send tracking.",
+  "schema": [
+    {
+      "name": "position",
+      "type": "position"
+    },
+    {
+      "name": "rotation",
+      "type": "rotation"
+    },
+    {
+      "name": "scale",
+      "type": "scale"
+    },
+    {
+      "name": "receiveAddress",
+      "type": "string"
+    },
+    {
+      "name": "amount",
+      "type": "number"
+    },
+    {
+      "name": "text",
+      "type": "string"
+    },
+    {
+      "name": "color",
+      "type": "color"
+    }
+  ],
+  "npm_dependencies": {
+    "culori": "^0.18.2",
+    "ethers": "^5.5.4",
+    "posthog-js": "^1.17.8",
+    "react-spring": "9.1.2"
+  }
+}

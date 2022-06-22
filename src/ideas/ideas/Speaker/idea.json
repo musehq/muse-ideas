@@ -1,0 +1,33 @@
+{
+  "predecessor": "34ac131a-cb28-4e41-b434-2c930b594857",
+  "id": "a2a9e02e-e5d6-4349-963b-66e5f537e5e4",
+  "name": "Speaker",
+  "purpose": "exist. play music from a speaker. fix multiple bugs. added volume. fix audio bugs, new model, add radius. fix on remove behavior.",
+  "schema": [
+    {
+      "name": "position",
+      "type": "position"
+    },
+    {
+      "name": "scale",
+      "type": "scale"
+    },
+    {
+      "name": "rotation",
+      "type": "rotation"
+    },
+    {
+      "name": "audioUrl",
+      "type": "audio"
+    },
+    {
+      "name": "distance",
+      "type": "radius"
+    },
+    {
+      "name": "volume",
+      "type": "float"
+    }
+  ],
+  "npm_dependencies": {}
+}

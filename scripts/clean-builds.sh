@@ -1,0 +1,1 @@
+find ./src -name ".idea" -type d -exec rm -r "{}" \;

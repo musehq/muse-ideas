@@ -1,0 +1,36 @@
+{
+  "id": "0238b7db-e5bd-472d-b81c-14e46b3109ef",
+  "name": "Button",
+  "predecessor": "4ebbb718-168f-4ec5-afb0-714728dbc976",
+  "purpose": "exist. add a customizable button. redesign, add hitbox. add analytics.",
+  "schema": [
+    {
+      "name": "position",
+      "type": "position"
+    },
+    {
+      "name": "scale",
+      "type": "scale"
+    },
+    {
+      "name": "rotation",
+      "type": "rotation"
+    },
+    {
+      "name": "link",
+      "type": "string"
+    },
+    {
+      "name": "text",
+      "type": "string"
+    },
+    {
+      "name": "color",
+      "type": "color"
+    }
+  ],
+  "npm_dependencies": {
+    "react-spring": "9.1.2",
+    "posthog-js": "^1.17.8"
+  }
+}

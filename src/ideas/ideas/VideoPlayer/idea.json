@@ -1,0 +1,69 @@
+{
+  "predecessor": "9bdef422-b8ff-4397-aa1e-33d0858dfada",
+  "id": "4e40d91f-3ef2-431a-8e4e-9d9cc4f7322a",
+  "name": "Video Player",
+  "purpose": "exist. manifest the Video Player. get proper world position. mute on mobile leave.",
+  "schema": [
+    {
+      "name": "position",
+      "type": "position"
+    },
+    {
+      "name": "rotation",
+      "type": "rotation"
+    },
+    {
+      "name": "scale",
+      "type": "scale"
+    },
+    {
+      "name": "videoSrc",
+      "type": "media"
+    },
+    {
+      "name": "videoDistance",
+      "type": "radius"
+    },
+    {
+      "name": "framed",
+      "type": "boolean"
+    },
+    {
+      "name": "volume",
+      "type": "number"
+    },
+    {
+      "name": "restartOnEnter",
+      "type": "boolean"
+    },
+    {
+      "name": "audioDistance",
+      "type": "radius"
+    },
+    {
+      "name": "frameColor",
+      "type": "color"
+    },
+    {
+      "name": "previewColor",
+      "type": "color"
+    },
+    {
+      "name": "previewText",
+      "type": "string"
+    },
+    {
+      "name": "previewTextColor",
+      "type": "color"
+    },
+    {
+      "name": "previewTextFont",
+      "type": "font"
+    },
+    {
+      "name": "previewTextSize",
+      "type": "number"
+    }
+  ],
+  "npm_dependencies": {}
+}

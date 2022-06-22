@@ -1,0 +1,61 @@
+{
+  "name": "muse-ideas",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "sync": "sh scripts/sync-pages.sh",
+    "clean": "sh scripts/clean-builds.sh",
+    "lint-staged": "lint-staged",
+    "prettier": "prettier --write 'src/**/*.{ts,tsx,md}'",
+    "prepare": "husky install"
+  },
+  "lint-staged": {
+    "*.{ts,tsx}": [
+      "eslint --quiet --fix",
+      "prettier --write"
+    ]
+  },
+  "dependencies": {
+    "@react-three/flex": "^1.0.0",
+    "@react-three/postprocessing": "^2.0.5",
+    "@types/poisson-disk-sampling": "^2.2.0",
+    "@walletconnect/web3-provider": "^1.7.1",
+    "ethers": "^5.5.4",
+    "leva": "^0.9.27",
+    "next": "12.1.6",
+    "node-fetch": "^2.6.1",
+    "poisson-disk-sampling": "^2.2.2",
+    "posthog-js": "^1.17.8",
+    "react": "18.1.0",
+    "react-dom": "18.1.0",
+    "react-spring": "9.1.2",
+    "seedrandom": "3.0.5",
+    "shopify-buy": "^2.12.0",
+    "simplex-noise": "^3.0.0",
+    "spacesvr": "2.0.1",
+    "three": "0.139.2",
+    "three-mesh-bvh": "^0.5.10",
+    "web3": "^1.7.1"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.18.2",
+    "@types/node": "^16.4.13",
+    "@types/node-fetch": "^2.6.1",
+    "@types/react": "^18.0.12",
+    "@types/react-dom": "^18.0.5",
+    "@types/three": "0.139.0",
+    "@typescript-eslint/eslint-plugin": "^5.27.1",
+    "@typescript-eslint/parser": "^5.27.1",
+    "eslint": "^7.32.0",
+    "eslint-plugin-prettier": "^3.4.0",
+    "eslint-plugin-react": "^7.24.0",
+    "eslint-plugin-react-hooks": "^4.2.0",
+    "husky": "^8.0.0",
+    "lint-staged": "^11.2.0",
+    "prettier": "^2.3.2",
+    "r3f-perf": "^6.2.6",
+    "typescript": "^4.7.3"
+  }
+}
