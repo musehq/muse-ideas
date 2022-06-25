@@ -37,5 +37,3 @@ find "${IDEAS_FOLDER}" -name 'idea.json' | while read line; do
 done
 
 prettier --write 'src/pages/**/*.tsx'
-
-
