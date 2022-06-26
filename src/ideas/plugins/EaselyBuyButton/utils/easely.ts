@@ -7,7 +7,7 @@ import { TransactionReceipt } from "web3-core";
 
 type Listing = {
   id: string;
-  network: Network;
+  network: NetworkType;
   signature: string;
   easelySignature: string;
   unsignedContent: any;
@@ -46,6 +46,7 @@ type RandomizedCollectionParams = {
   startTime: number;
   endTime: number;
   mintAmount: number;
+  supply: number;
 };
 
 type RandomizedCollectionRestrictedListingParams = {
@@ -72,12 +73,17 @@ enum ListingAccessType {
 
 enum ContractType {
   ERC721ARandomizedCollection = "ERC721A_RANDOMIZED_COLLECTION",
+  ERC721ARandomizedCollectionV2 = "ERC721A_RANDOMIZED_COLLECTION_V2",
   ERC721StandardCollection = "ERC721_STANDARD_COLLECTION",
-  // ERC721RandomizedCollectionV2 is deprecated in favor of ERC721ARandomizedCollection
+  // ERC721RandomizedCollectionV2 is deprecated in favor of ERC721ARandomizedCollectionV2
   ERC721RandomizedCollectionV2 = "ERC721_RANDOMIZED_COLLECTION_V2",
 }
 
-type Network = "mainnet" | "rinkeby";
+export enum NetworkType {
+  Mainnet = "ETH_MAINNET",
+  Rinkeby = "ETH_RINKEBY",
+  Goerli = "ETH_GOERLI",
+}
 
 const getTotalPrice = (priceInWei: string, mintAmount: number) => {
   const price = new BN(priceInWei);
@@ -85,20 +91,12 @@ const getTotalPrice = (priceInWei: string, mintAmount: number) => {
   return String(price.mul(mintCount));
 };
 
-const getListingEndpoint = (listingId: string, network: Network): string => {
-  switch (network) {
-    case "mainnet":
-      return `https://api.easely.io/v1/listings/${listingId}?utm_source=muse`;
-    case "rinkeby":
-      return `https://api.rinkeby.easely.io/v1/listings/${listingId}?utm_source=muse`;
-  }
+const getListingEndpoint = (listingId: string): string => {
+  return `https://api.easely.io/v1/listings/${listingId}?utm_source=muse`;
 };
 
-const getListingFromNetwork = async (
-  listingId: string,
-  network: Network
-): Promise<Listing> => {
-  const resp = await fetch(getListingEndpoint(listingId, network));
+const getListingFromAPI = async (listingId: string): Promise<Listing> => {
+  const resp = await fetch(getListingEndpoint(listingId));
   if (!resp.ok) {
     throw new Error(resp.statusText);
   }
@@ -107,8 +105,6 @@ const getListingFromNetwork = async (
   if (!respJSON) {
     throw new Error(`Listing ${listingId} not found`);
   }
-
-  respJSON.network = network;
 
   const unsignedContentJSON = JSON.parse(respJSON.unsignedContent);
   const priceInWei: string =
@@ -119,12 +115,7 @@ const getListingFromNetwork = async (
 };
 
 const getListing = async (listingId: string): Promise<Listing> => {
-  try {
-    const listing = await getListingFromNetwork(listingId, "mainnet");
-    return Promise.resolve(listing);
-  } catch (e) {
-    return getListingFromNetwork(listingId, "rinkeby");
-  }
+  return await getListingFromAPI(listingId);
 };
 
 const mintFromRandomizedListing = async (
@@ -227,6 +218,33 @@ const mintFromRandomized721AListingRestricted = async (
     .on("transactionHash", setTxHash);
 };
 
+const mintFromRandomized721AV2Listing = async (
+  contract: Contract,
+  listing: Listing,
+  numberToMint: number,
+  account: string,
+  setTxHash: (hash: string) => void
+): Promise<TransactionReceipt> => {
+  const params = JSON.parse(
+    listing.unsignedContent
+  ) as RandomizedCollectionParams;
+  return await contract.methods
+    .mint(
+      params.version,
+      params.mintAmount,
+      numberToMint,
+      params.supply,
+      [params.startPrice, params.endPrice, params.startTime, params.endTime],
+      listing.signature,
+      listing.easelySignature
+    )
+    .send({
+      from: account,
+      value: getTotalPrice(params.startPrice, numberToMint),
+    })
+    .on("transactionHash", setTxHash);
+};
+
 const mintFromStandardListing = async (
   contract: Contract,
   listing: Listing,
@@ -250,26 +268,34 @@ const mintFromStandardListing = async (
     .on("transactionHash", setTxHash);
 };
 
-const chainIdNumber = (network: Network): number => {
+const chainIdNumber = (network: NetworkType): number | null => {
   switch (network) {
-    case "mainnet":
+    case NetworkType.Mainnet:
       return 1;
-    case "rinkeby":
+    case NetworkType.Rinkeby:
       return 4;
+    case NetworkType.Goerli:
+      return 5;
+    default:
+      return null;
   }
 };
 
-const chainIdHex = (network: Network): string => {
+const chainIdHex = (network: NetworkType): string | null => {
   switch (network) {
-    case "mainnet":
+    case NetworkType.Mainnet:
       return "0x1";
-    case "rinkeby":
+    case NetworkType.Rinkeby:
       return "0x4";
+    case NetworkType.Goerli:
+      return "0x5";
+    default:
+      return null;
   }
 };
 
 // checks that the user is on the correct chain and prompts them to switch if they are not.
-const checkChain = async (web3: any, listing: Listing): Promise<void> => {
+const checkChain = async (web3: Web3, listing: Listing): Promise<void> => {
   const chainId = await web3.eth.getChainId();
   if (chainId !== chainIdNumber(listing.network)) {
     await window.ethereum.request({
@@ -280,7 +306,7 @@ const checkChain = async (web3: any, listing: Listing): Promise<void> => {
 };
 
 const mintFromListing = async (
-  web3: any,
+  web3: Web3,
   listing: Listing,
   numberToMint: number,
   setTxHash: (hash: string) => void
@@ -325,6 +351,27 @@ const mintFromListing = async (
             setTxHash
           );
         case ListingAccessType.Restricted:
+          return mintFromRandomized721AListingRestricted(
+            mintingContract,
+            listing,
+            numberToMint,
+            account,
+            setTxHash
+          );
+      }
+      break;
+    case ContractType.ERC721ARandomizedCollectionV2:
+      switch (listing.accessType) {
+        case ListingAccessType.General:
+          return mintFromRandomized721AV2Listing(
+            mintingContract,
+            listing,
+            numberToMint,
+            account,
+            setTxHash
+          );
+        case ListingAccessType.Restricted:
+          // Same as 721A V1 restricted listing because it does not require a value for supply
           return mintFromRandomized721AListingRestricted(
             mintingContract,
             listing,

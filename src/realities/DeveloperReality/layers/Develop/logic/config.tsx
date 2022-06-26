@@ -22,7 +22,7 @@ export const getDefaultFromType = (type: string) => {
   if (type === "media") return undefined;
   if (type === "image") return undefined;
   if (type === "video") return undefined;
-  if (type === "string") return undefined;
+  if (type === "string") return "";
   if (type === "audio") return undefined;
   if (type === "number") return 0;
   if (type === "position") return [0, 0, 0];

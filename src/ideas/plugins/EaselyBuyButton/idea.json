@@ -1,8 +1,8 @@
 {
-  "predecessor": "a6ec17f6-ef65-4c78-8aa9-2e3caab0034c",
-  "id": "e6b248a2-05c3-40f1-93fb-a283a186d3a2",
+  "id": "f25491ff-e3d5-4af5-b64c-7b0ab5bc54bf",
   "name": "Easely Buy Button",
-  "purpose": "exist. manifest Easely Buy Button. remove walletconnect, fix text color, clean up errors. add pr #1. include lib locally. add pr #2.",
+  "predecessor": "e6b248a2-05c3-40f1-93fb-a283a186d3a2",
+  "purpose": "exist. manifest Easely Buy Button. remove walletconnect, fix text color, clean up errors. add pr #1. include lib locally. add pr #2. add pr#3.",
   "schema": [
     {
       "name": "position",
