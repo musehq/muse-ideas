@@ -13,4 +13,4 @@ A repo to store ideas that are pushed live to Muse. The ideas are organized by t
 
 ## develop
 
-Once your page is created, you can access the idea at the same path starting from `src/ideas`. For example, to develop the Media idea located at `src/primitive/Media`, go to `localhost:3000/primitive/Media` 
+Once your page is created, you can access the idea at the same path starting from `src/ideas`. For example, to develop the Proximity Media idea located at `src/ideas/decorations/ProximityMedia`, go to `localhost:3000/decorations/ProximityMedia` 
