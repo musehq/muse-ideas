@@ -79,6 +79,8 @@ enum ContractType {
   ERC721RandomizedCollectionV2 = "ERC721_RANDOMIZED_COLLECTION_V2",
 }
 
+const RANDOMIZED_COLLECTION_TYPES = [ContractType.ERC721ARandomizedCollection, ContractType.ERC721ARandomizedCollectionV2, ContractType.ERC721RandomizedCollectionV2]
+
 export enum NetworkType {
   Mainnet = "ETH_MAINNET",
   Rinkeby = "ETH_RINKEBY",
@@ -393,10 +395,7 @@ const mintFromListing = async (
 
 const isRandomizedCollection = (listing: Listing): boolean => {
   const contractType = listing.contractDetails.type;
-  return (
-    contractType === ContractType.ERC721RandomizedCollectionV2 ||
-    contractType === ContractType.ERC721ARandomizedCollection
-  );
+  return RANDOMIZED_COLLECTION_TYPES.includes(contractType);
 };
 
 const getRandomizedCollectionMintOptions = (
