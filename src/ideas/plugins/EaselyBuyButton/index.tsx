@@ -11,6 +11,7 @@ import {
   getListing,
   getRandomizedCollectionMintOptions,
   mintFromListing,
+  NetworkType,
 } from "./utils/easely";
 
 const FONT_FILE =
@@ -60,8 +61,10 @@ export default function EaselyBuyButton(props: EaselyBuyButtonProps) {
   };
   const openTxHash = () => {
     if (txHash) {
-      if (listing?.network === "rinkeby") {
+      if (listing?.network === NetworkType.Rinkeby) {
         window.open(`https://rinkeby.etherscan.io/tx/${txHash}`);
+      } else if (listing?.network === NetworkType.Goerli) {
+        window.open(`https://goerli.etherscan.io/tx/${txHash}`);
       } else {
         window.open(`https://etherscan.io/tx/${txHash}`);
       }
