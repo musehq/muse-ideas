@@ -1,5 +1,5 @@
 # muse-reality
-a repo to store our ideas. should be open sourced at some point ...
+A repo to store ideas that are pushed live to Muse. The ideas are organized by type and identified by the `idea.json` manifest file. Instructions to contribute coming soon...
 
 ## setup
 

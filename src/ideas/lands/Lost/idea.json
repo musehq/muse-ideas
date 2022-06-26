@@ -1,0 +1,29 @@
+{
+  "predecessor": "dfaa43f3-678d-42fc-aee0-bf5bae8146dd",
+  "id": "4e075efd-e25e-4a30-b516-aa430a98af76",
+  "name": "Lost Universe",
+  "purpose": "exist. manifest the Lost Universe. add customizations to color, ideas, fog, fogdist, and sunlight.",
+  "schema": [
+    {
+      "name": "color",
+      "type": "color"
+    },
+    {
+      "name": "ideas",
+      "type": "boolean"
+    },
+    {
+      "name": "fog",
+      "type": "boolean"
+    },
+    {
+      "name": "fogDistance",
+      "type": "number"
+    },
+    {
+      "name": "sunlight",
+      "type": "boolean"
+    }
+  ],
+  "npm_dependencies": {}
+}
