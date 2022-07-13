@@ -1,9 +1,16 @@
 # 💭 muse-ideas, community-built plugins for Muse
-A repo to store ideas that are added to the Muse Universe. The ideas are organized by type and identified by the `idea.json` manifest file. The documentation is a work in progress, so if anything is confusing I advise you join our discord so we can provide support! https://discord.gg/ADJSj9xtDJ
+
+A repo to store ideas that are added to the Muse Universe. 
+
+# what's an idea?
+
+Ideas are the fundamental building blocks for your Muse World. Everything you can add or remove to your world is an Idea. They are different than React Components since a single Idea can be constructed from multiple React Components. They are also designed with Muse's builder tools and compilation infrastructure in mind. In the end, your World is simply the set of Ideas you use to tell your Story.
 
 # how to contribute
 
 If you want to create your own idea to add to the muse ecosystem for personal use or for one-off projects, you can simply submit a Pull Request with the source for your plugin. If you are looking for a commercial integration or want to keep your idea closed-source, reach out to us on discord and we can get set up on a call.
+
+Join our discord to get in touch https://discord.gg/ADJSj9xtDJ
 
 ## setup
 
