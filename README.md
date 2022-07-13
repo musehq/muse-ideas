@@ -1,4 +1,4 @@
-# muse-ideas
+# 💭 muse-ideas
 A repo to store ideas that are added to the Muse Universe. The ideas are organized by type and identified by the `idea.json` manifest file. The documentation is a work in progress, so if anything is confusing I advise you join our discord so we can provide support! https://discord.gg/ADJSj9xtDJ
 
 # how to contribute
