@@ -1,8 +1,8 @@
-# 💭 muse-ideas, community-built plugins for Muse
+# 💭 muse-ideas
 
-A repo to store ideas that are added to the Muse Universe. 
+A community repository to work on Ideas for the Muse Universe. 
 
-# what's an idea?
+# what is an Idea?
 
 Ideas are the fundamental building blocks for your Muse World. Everything you can add or remove to your world is an Idea. They are different than React Components since a single Idea can be constructed from multiple React Components. They are also designed with Muse's builder tools and compilation infrastructure in mind. In the end, your World is simply the set of Ideas you use to tell your Story.
 
