@@ -1,0 +1,23 @@
+{
+  "name": "Hiding Duck",
+  "purpose": "",
+  "schema": [
+    {
+      "name": "position",
+      "type": "position"
+    },
+    {
+      "name": "rotation",
+      "type": "rotation"
+    },
+    {
+      "name": "scale",
+      "type": "scale"
+    },
+    {
+      "name": "distance",
+      "type": "radius"
+    }
+  ],
+  "npm_dependencies": {}
+}
