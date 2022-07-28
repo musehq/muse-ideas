@@ -1,6 +1,8 @@
 {
+  "id": "f7090c43-7c94-4380-b9a4-2e7341008fa9",
   "name": "Hiding Duck",
-  "purpose": "",
+  "predecessor": "4bee8d89-9bb5-4238-8c83-95b098f88457",
+  "purpose": "exist. Hiding Duck.",
   "schema": [
     {
       "name": "position",
@@ -17,7 +19,12 @@
     {
       "name": "distance",
       "type": "radius"
+    },
+    {
+      "name": "model",
+      "type": "gltf"
     }
   ],
-  "npm_dependencies": {}
+  "npm_dependencies": {},
+  "data_url": null
 }

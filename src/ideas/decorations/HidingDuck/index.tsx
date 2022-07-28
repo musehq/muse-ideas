@@ -5,18 +5,21 @@ import { Group, Vector3 } from "three";
 
 export type HidingDuckProps = {
   distance?: number;
+  model?: string;
 } & GroupProps;
 
 export default function HidingDuck(props: HidingDuckProps) {
-  const { distance = 4, ...rest } = props;
+  const {
+    distance = 4,
+    model = "https://vazxmixjsiawhamofees.supabase.co/storage/v1/object/public/models/duck/model.gltf",
+    ...rest
+  } = props;
 
   const [near, setNear] = useState(false);
   const group = useRef<Group>(null);
   const dummy = useMemo(() => new Vector3(), []);
 
-  const gltf = useGLTF(
-    "https://vazxmixjsiawhamofees.supabase.co/storage/v1/object/public/models/duck/model.gltf"
-  );
+  const gltf = useGLTF(model);
 
   // three js
   useFrame(({ camera }) => {
