@@ -8,7 +8,7 @@ type DevelopProps = {
 };
 
 export default function Debug(props: DevelopProps) {
-  const IS_LAND = window.location.href.includes("/land/");
+  const IS_LAND = window.location.href.includes("/lands/");
 
   return (
     <>

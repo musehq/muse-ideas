@@ -5,6 +5,7 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
+    "generate": "sh scripts/generate.sh",
     "sync": "sh scripts/sync-pages.sh",
     "clean": "sh scripts/clean-builds.sh",
     "lint-staged": "lint-staged",

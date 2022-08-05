@@ -55,7 +55,7 @@ export default function Develop(props: DevelopProps) {
       );
   }, []);
 
-  const IS_LAND = window.location.pathname.includes("land");
+  const IS_LAND = window.location.pathname.includes("/lands/");
   const IS_DEV_ENV = process.env.NODE_ENV === "development";
 
   const config = useConfig(manifest);
