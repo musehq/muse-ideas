@@ -64,15 +64,15 @@ This file stores the metadata as JSON for the idea you want to upload. We can he
 - color
 - boolean
 
-#### \> provided npm dependencies
-- react
-- @react-three/fiber
-- three
-- @react-three/drei
-- @react-three/flex
-- @react-three/cannon
-- spacesvr
-- @react-spring/three
+#### \> provided npm dependencies (click to learn more)
+- [react](https://reactjs.org/docs/hello-world.html)
+- [three.js](https://threejs.org/examples/#webgl_animation_keyframes)
+- [@react-three/fiber](https://docs.pmnd.rs/react-three-fiber/getting-started/introduction)
+- [@react-three/drei](https://github.com/pmndrs/drei#readme)
+- [@react-three/flex](https://github.com/pmndrs/react-three-flex#readme)
+- [@react-three/cannon](https://github.com/pmndrs/use-cannon/tree/master/packages/react-three-cannon)
+- [spacesvr](https://github.com/musehq/spacesvr#readme)
+- [@react-spring/three](https://react-spring.dev/basics#basics)
 
 ## gotchas
 
