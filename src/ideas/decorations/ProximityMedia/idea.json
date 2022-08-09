@@ -1,8 +1,8 @@
 {
-  "predecessor": "1b7e781d-5cfe-46ff-89b2-805f26ece83c",
-  "id": "db54f8cf-55bc-4788-840a-1994e3e6b7a5",
+  "id": "b88fe4b3-74bc-4c7c-9e8c-26c739c64298",
   "name": "Proximity Media",
-  "purpose": "exist. display user content. present images and videos. make it appear that it is placed on a canvas and accept a link on click. Fix the stupid local props (url->link). hides/shows given a radius.",
+  "predecessor": "af6205f1-0dd8-4df9-9d10-1022c1a8248b",
+  "purpose": "exist. display user content. present images and videos. make it appear that it is placed on a canvas and accept a link on click. Fix the stupid local props (url->link). hides/shows given a radius. support transparents. replace displayRadius with actual radius.",
   "schema": [
     {
       "name": "media",
@@ -22,11 +22,7 @@
     },
     {
       "name": "radius",
-      "type": "number"
-    },
-    {
-      "name": "displayRadius",
-      "type": "boolean"
+      "type": "radius"
     },
     {
       "name": "framed",

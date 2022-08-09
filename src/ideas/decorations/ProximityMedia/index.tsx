@@ -10,7 +10,6 @@ export type ProximityMediaProps = {
   framed?: boolean;
   frameColor?: string;
   radius?: number;
-  displayRadius?: boolean;
 } & GroupProps;
 
 export default function ProximityMedia(props: ProximityMediaProps) {
@@ -19,7 +18,6 @@ export default function ProximityMedia(props: ProximityMediaProps) {
     framed = false,
     frameColor = "#111111",
     radius = 2,
-    displayRadius = false,
     ...rest
   } = props;
 
@@ -77,12 +75,6 @@ export default function ProximityMedia(props: ProximityMediaProps) {
           />
         )}
       </animated.group>
-      {displayRadius && (
-        <mesh rotation-x={Math.PI} ref={circleRef}>
-          <sphereBufferGeometry args={[RADIUS, 20, 20]} />
-          <meshBasicMaterial color="red" wireframe transparent opacity={0.9} />
-        </mesh>
-      )}
     </group>
   );
 }
