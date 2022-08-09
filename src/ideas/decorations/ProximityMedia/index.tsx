@@ -73,7 +73,7 @@ export default function ProximityMedia(props: ProximityMediaProps) {
             src={media}
             framed={framed}
             frameMaterial={frameMat}
-            transparent={modUrl.endsWith(".png")}
+            transparent={modUrl.endsWith(".png") || modUrl.endsWith(".PNG")}
           />
         )}
       </animated.group>
