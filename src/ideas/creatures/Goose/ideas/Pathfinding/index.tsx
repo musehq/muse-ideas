@@ -22,10 +22,10 @@ export default function Pathfinding() {
 
   useLimitedFrame(20, ({ clock }) => {
     if (clock.getElapsedTime() > nextMove) {
-      const nextDelta = 8 + Math.pow(Math.random(), 10) * 30;
+      const nextDelta = 12 + Math.pow(Math.random(), 0.15) * 30;
       setNextMove(clock.elapsedTime + nextDelta);
-      target.x = (Math.random() * 2 - 1) * 12;
-      target.z = (Math.random() * 2 - 1) * 12;
+      target.x = (Math.random() * 2 - 1) * 8;
+      target.z = (Math.random() * 2 - 1) * 8;
     }
   });
 

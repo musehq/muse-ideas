@@ -8,16 +8,16 @@ import { GooseMind } from "./logic/goose";
 import GooseAudio from "./ideas/GooseAudio";
 
 type GooseProps = {
-  color?: string;
+  name?: string;
 } & GroupProps;
 
 export default function Goose(props: GooseProps) {
-  const { color = "white", ...rest } = props;
+  const { name = "goose", ...rest } = props;
 
   const mind = useMemo(() => new GooseMind(), []);
 
   return (
-    <group name="Goose" {...rest}>
+    <group name={`goose-${name}`} {...rest}>
       <Mind mind={mind}>
         <Body height={0.5} radius={0.2} speed={1}>
           <Pathfinding />

@@ -21,6 +21,6 @@ export class GooseMind implements Mind {
   }
 
   update(state: RootState) {
-    const l = 1 + 2;
+    const l = 1 + 2; // dummy placeholder
   }
 }

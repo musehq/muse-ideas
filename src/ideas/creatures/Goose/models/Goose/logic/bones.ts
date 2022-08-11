@@ -59,3 +59,11 @@ export const angleToMathPiRange = (angle: number) => {
 
   return ang;
 };
+
+export const openMouth = (bones: Bones) => {
+  bones.mouth.rotation.x = MathUtils.lerp(bones.mouth.rotation.x, -0.34, 0.1);
+};
+
+export const closeMouth = (bones: Bones) => {
+  bones.mouth.rotation.x = MathUtils.lerp(bones.mouth.rotation.x, -0.2, 0.19);
+};

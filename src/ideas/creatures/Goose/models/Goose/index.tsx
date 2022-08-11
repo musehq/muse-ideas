@@ -1,6 +1,6 @@
 import * as THREE from "three";
 import React, { useEffect, useMemo, useRef } from "react";
-import { useGLTF, useAnimations } from "@react-three/drei";
+import { useGLTF, useAnimations, PositionalAudio } from "@react-three/drei";
 import { GLTF } from "three-stdlib";
 import {
   Euler,
@@ -11,8 +11,16 @@ import {
   Spherical,
   Vector3,
 } from "three";
-import { angleToMathPiRange, rotateBones, useBones } from "./logic/bones";
-import { useThree, useFrame } from "@react-three/fiber";
+import {
+  angleToMathPiRange,
+  closeMouth,
+  openMouth,
+  rotateBones,
+  useBones,
+} from "./logic/bones";
+import { useFrame } from "@react-three/fiber";
+import { PositionalAudio as PositionalAudioImpl } from "three/src/audio/PositionalAudio";
+import { useLimitedFrame } from "spacesvr";
 
 type ActionName =
   | "attack"
@@ -46,8 +54,11 @@ type GLTFResult = GLTF & {
   animations: GLTFAction[];
 };
 
+const CONTENT_LIBRARY = "https://d27rt3a60hh1lx.cloudfront.net/content/goose";
+const HONK_FILE = `${CONTENT_LIBRARY}/honk-sound.mp3`;
+
 const FILE_URL =
-  "https://d27rt3a60hh1lx.cloudfront.net/models/Goose-1660213279/goose_02.glb.gz";
+  "https://d27rt3a60hh1lx.cloudfront.net/models/Goose-1660227654/goose_03.glb.gz";
 
 const HEAD_OFFSET = new THREE.Vector3(0, 0.705, 0.15);
 const HEAD_RANGE = Math.PI / 2 - 0.2;
@@ -60,12 +71,20 @@ type GooseModelProps = {
 export default function GooseModel(props: GooseModelProps) {
   const { walking, looking = true } = props;
 
-  const { scene } = useThree();
   const group = useRef<Group>(null);
-  const { nodes, materials, animations } = useGLTF(FILE_URL) as GLTFResult;
+  const gltf = useGLTF(FILE_URL) as GLTFResult;
+  const { nodes, materials, animations, scene } = gltf;
   const { actions } = useAnimations(animations, group);
+  const honkAudio = useRef<PositionalAudioImpl>();
 
   const bones = useBones(nodes.Bone);
+
+  useEffect(() => {
+    scene.traverse((child) => {
+      console.log(child);
+      child.frustumCulled = false;
+    });
+  }, [scene]);
 
   useEffect(() => {
     if (!actions.walk || !actions.idle) return;
@@ -104,17 +123,31 @@ export default function GooseModel(props: GooseModelProps) {
     } else {
       rotateBones(bones, 0);
     }
+
+    if (honkAudio.current?.isPlaying) {
+      openMouth(bones);
+    } else {
+      closeMouth(bones);
+    }
+  });
+
+  useLimitedFrame(1.3, () => {
+    if (!honkAudio.current) return;
+    if (Math.random() < 0.08) {
+      honkAudio.current.play();
+    }
   });
 
   return (
     <group ref={group} {...props}>
+      <PositionalAudio
+        ref={honkAudio}
+        url={HONK_FILE}
+        loop={false}
+        autoplay={false}
+      />
       <group name="Scene" scale={0.15}>
-        <group
-          name="goose_armature"
-          position={[0, 2.1055, -0.0086]}
-          rotation={[0.9757, 0, 0]}
-          scale={0.5645}
-        >
+        <group name="goose_armature">
           <primitive object={nodes.Bone} />
           <group name="goose">
             <skinnedMesh

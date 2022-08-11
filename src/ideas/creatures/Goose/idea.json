@@ -15,8 +15,8 @@
       "type": "scale"
     },
     {
-      "name": "color",
-      "type": "color"
+      "name": "name",
+      "type": "string"
     }
   ],
   "npm_dependencies": {}
