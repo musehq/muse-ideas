@@ -2,7 +2,15 @@ import * as THREE from "three";
 import React, { useEffect, useMemo, useRef } from "react";
 import { useGLTF, useAnimations } from "@react-three/drei";
 import { GLTF } from "three-stdlib";
-import { Euler, Group, Object3D, Quaternion, Spherical, Vector3 } from "three";
+import {
+  Euler,
+  Group,
+  LoopRepeat,
+  Object3D,
+  Quaternion,
+  Spherical,
+  Vector3,
+} from "three";
 import { angleToMathPiRange, rotateBones, useBones } from "./logic/bones";
 import { useThree, useFrame } from "@react-three/fiber";
 
@@ -61,18 +69,19 @@ export default function GooseModel(props: GooseModelProps) {
 
   useEffect(() => {
     if (!actions.walk || !actions.idle) return;
-    actions.walk.setEffectiveTimeScale(1);
+    actions.walk.loop = LoopRepeat;
+    actions.idle.loop = LoopRepeat;
+    console.log(actions.walk);
     if (walking) {
-      actions.idle.stop();
-      actions.walk.play();
+      actions.idle.fadeOut(0.4);
+      actions.walk.reset().fadeIn(0.4).play().setEffectiveTimeScale(2);
     } else {
-      actions.walk.stop();
-      actions.idle.play();
+      actions.walk.fadeOut(0.4);
+      actions.idle.reset().fadeIn(0.4).play();
     }
   }, [walking]);
 
   const pos = useMemo(() => new Vector3(), []);
-  const quat = useMemo(() => new Quaternion(), []);
   const spher = useMemo(() => new Spherical(), []);
   const rot = useMemo(() => new Vector3(), []);
   useFrame(({ camera }) => {
