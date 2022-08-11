@@ -18,7 +18,7 @@ export default function Goose(props: GooseProps) {
   return (
     <group name="Goose" {...rest}>
       <Mind mind={mind}>
-        <Body height={0.5} radius={0.1} speed={1}>
+        <Body height={0.5} radius={0.2} speed={1}>
           <Pathfinding />
           <BodyConsumer>
             {(bodyState) => (

@@ -73,14 +73,15 @@ export default function BodyLayer(props: BodyLayerProps) {
 
     // slerp towards target rot
     group.current.quaternion.slerp(targetRot, 0.17);
-    lookAtTarget();
 
     // logic ================================================================
     // move towards target
     if (dir.length() <= 0.1) {
       setMoving(false);
+      bodyApi.velocity.set(0, 0, 0);
     } else {
       setMoving(true);
+      lookAtTarget();
       bodyApi.velocity.set(dir.x * SPEED, vel.y, dir.z * SPEED);
     }
   });

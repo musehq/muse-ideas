@@ -24,7 +24,7 @@ export const useCapsuleCollider = (
   }, [HEIGHT, RADIUS]);
 
   const compoundBody = useCompoundBody(() => ({
-    mass: 500,
+    mass: 60,
     position: vPos,
     segments: 8,
     fixedRotation: true,
