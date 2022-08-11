@@ -1,6 +1,5 @@
 import { createContext, ReactNode, useContext } from "react";
 import { Vector3 } from "three";
-import { useLimitedFrame } from "spacesvr";
 import { RenderCallback } from "@react-three/fiber";
 
 export interface Mind {
@@ -20,8 +19,6 @@ type MindProps = {
 
 export default function MindLayer(props: MindProps) {
   const { mind, children } = props;
-
-  useLimitedFrame(20, (st, delt) => mind.update(st, delt));
 
   const value = { target: mind.target };
 

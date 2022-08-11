@@ -1,7 +1,6 @@
-import { useFrame, useLoader } from "@react-three/fiber";
 import { PositionalAudio } from "@react-three/drei";
-import { AudioLoader, PositionalAudio as PositionalAudioImpl } from "three";
-import { useEffect, useRef } from "react";
+import { PositionalAudio as PositionalAudioImpl } from "three";
+import { useRef } from "react";
 import { useLimitedFrame } from "spacesvr";
 
 const CONTENT_LIBRARY = "https://d27rt3a60hh1lx.cloudfront.net/content/goose";
@@ -25,7 +24,6 @@ export default function GooseAudio(props: GooseAudioProps) {
 
     const audio = Math.random() > 0.5 ? audio1.current : audio2.current;
     audio.setVolume(Math.random() * 0.1 + 0.05);
-    audio?.setDetune(Math.random() * 0.1 - 0.05);
     audio.play();
   });
 

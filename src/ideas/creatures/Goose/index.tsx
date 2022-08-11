@@ -3,7 +3,7 @@ import GooseModel from "./models/Goose";
 import { GroupProps } from "@react-three/fiber";
 import Mind from "./layers/Mind";
 import Body, { BodyConsumer } from "./layers/Body";
-import Pathfinding from "./modifiers/Pathfinding";
+import Pathfinding from "./ideas/Pathfinding";
 import { GooseMind } from "./logic/goose";
 import GooseAudio from "./ideas/GooseAudio";
 

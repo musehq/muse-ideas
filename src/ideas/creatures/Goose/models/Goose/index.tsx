@@ -71,7 +71,6 @@ export default function GooseModel(props: GooseModelProps) {
     if (!actions.walk || !actions.idle) return;
     actions.walk.loop = LoopRepeat;
     actions.idle.loop = LoopRepeat;
-    console.log(actions.walk);
     if (walking) {
       actions.idle.fadeOut(0.4);
       actions.walk.reset().fadeIn(0.4).play().setEffectiveTimeScale(2);
@@ -98,7 +97,6 @@ export default function GooseModel(props: GooseModelProps) {
     group.current.getWorldDirection(rot);
 
     const originalAngle = spher.setFromCartesianCoords(rot.x, 0, rot.z).theta;
-
     const angle = offsetAngle - originalAngle;
 
     if (Math.abs(angleToMathPiRange(angle)) <= HEAD_RANGE) {

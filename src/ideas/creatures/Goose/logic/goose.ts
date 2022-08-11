@@ -4,21 +4,23 @@ import { RootState } from "@react-three/fiber/dist/declarations/src/core/store";
 
 export class GooseMind implements Mind {
   target: Vector3;
-  lastSwitch: number;
+  targetVector: Vector3;
+  state: "walk" | "idle" | "eat" | "attack";
+  playerNear: boolean;
+  playerInSight: boolean;
 
   constructor() {
-    this.lastSwitch = 0;
     this.target = new Vector3();
+    this.targetVector = new Vector3();
+
+    this.state = "idle";
+    this.playerNear = false;
+    this.playerInSight = false;
+
     return this;
   }
 
   update(state: RootState) {
-    if (state.clock.getElapsedTime() - this.lastSwitch > 12) {
-      this.lastSwitch = state.clock.getElapsedTime();
-      this.target.x = Math.random() * 2 - 1;
-      this.target.z = Math.random() * 2 - 1;
-      this.target.multiplyScalar(5);
-      this.target.y = 0;
-    }
+    const l = 1 + 2;
   }
 }

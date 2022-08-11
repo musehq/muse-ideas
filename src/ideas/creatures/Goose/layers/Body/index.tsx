@@ -9,7 +9,7 @@ import {
 } from "react";
 import { Group, Quaternion, Vector3 } from "three";
 import { useCapsuleCollider } from "./logic/collider";
-import { setYRotFromXZ } from "../../modifiers/Pathfinding/logic/move";
+import { setYRotFromXZ } from "../../ideas/Pathfinding/logic/move";
 import { useLimitedFrame } from "spacesvr";
 
 type BodyState = {
