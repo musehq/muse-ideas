@@ -13,7 +13,7 @@ export class GooseMind implements Mind {
   }
 
   update(state: RootState) {
-    if (state.clock.getElapsedTime() - this.lastSwitch > 10) {
+    if (state.clock.getElapsedTime() - this.lastSwitch > 1000) {
       this.lastSwitch = state.clock.getElapsedTime();
       this.target.x = Math.random() * 2 - 1;
       this.target.z = Math.random() * 2 - 1;
