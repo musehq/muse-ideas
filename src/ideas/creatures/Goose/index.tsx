@@ -5,6 +5,7 @@ import Mind from "./layers/Mind";
 import Body, { BodyConsumer } from "./layers/Body";
 import Pathfinding from "./modifiers/Pathfinding";
 import { GooseMind } from "./logic/goose";
+import GooseAudio from "./ideas/GooseAudio";
 
 type GooseProps = {
   color?: string;
@@ -23,6 +24,7 @@ export default function Goose(props: GooseProps) {
           <BodyConsumer>
             {(bodyState) => (
               <Suspense fallback={null}>
+                <GooseAudio walking={bodyState.moving} />
                 <GooseModel walking={bodyState.moving} />
               </Suspense>
             )}
