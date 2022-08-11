@@ -2,25 +2,19 @@ import * as THREE from "three";
 import React, { useEffect, useMemo, useRef } from "react";
 import { useGLTF, useAnimations, PositionalAudio } from "@react-three/drei";
 import { GLTF } from "three-stdlib";
-import {
-  Euler,
-  Group,
-  LoopRepeat,
-  Object3D,
-  Quaternion,
-  Spherical,
-  Vector3,
-} from "three";
+import { Group, LoopRepeat, Spherical, Vector2, Vector3 } from "three";
 import {
   angleToMathPiRange,
   closeMouth,
   openMouth,
   rotateBones,
+  setHeadHeight,
   useBones,
 } from "./logic/bones";
 import { useFrame } from "@react-three/fiber";
 import { PositionalAudio as PositionalAudioImpl } from "three/src/audio/PositionalAudio";
 import { useLimitedFrame } from "spacesvr";
+import { useMind } from "../../layers/Mind";
 
 type ActionName =
   | "attack"
@@ -75,6 +69,7 @@ export default function GooseModel(props: GooseModelProps) {
   const { nodes, materials, animations, scene } = gltf;
   const { actions } = useAnimations(animations, group);
   const honkAudio = useRef<PositionalAudioImpl>();
+  const mind = useMind();
 
   const bones = useBones(nodes.Bone);
 
@@ -109,6 +104,8 @@ export default function GooseModel(props: GooseModelProps) {
       group.current.quaternion
     );
     const posOffset = pos.add(head_off).sub(camera.position);
+    const dist = new Vector2(posOffset.x, posOffset.z).length();
+    const heightAngle = Math.atan2(posOffset.y, dist) - Math.PI / 2;
 
     const offsetAngle = spher.setFromCartesianCoords(
       -posOffset.x,
@@ -120,11 +117,15 @@ export default function GooseModel(props: GooseModelProps) {
 
     if (
       Math.abs(angleToMathPiRange(angle)) <= HEAD_RANGE &&
-      posOffset.length() < 4
+      posOffset.length() < 6
     ) {
+      mind.sendSignal("playerInSight");
       rotateBones(bones, angle);
+      setHeadHeight(bones, heightAngle);
     } else {
+      mind.sendSignal("playerLost");
       rotateBones(bones, 0);
+      setHeadHeight(bones, -Math.PI / 2);
     }
 
     if (honkAudio.current?.isPlaying) {

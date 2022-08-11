@@ -60,6 +60,10 @@ export const angleToMathPiRange = (angle: number) => {
   return ang;
 };
 
+export const setHeadHeight = (bones: Bones, angle: number) => {
+  bones.head.rotation.x = MathUtils.lerp(bones.head.rotation.x, angle, 0.15);
+};
+
 export const openMouth = (bones: Bones) => {
   bones.mouth.rotation.x = MathUtils.lerp(bones.mouth.rotation.x, -0.34, 0.1);
 };
