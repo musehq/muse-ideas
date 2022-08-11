@@ -65,11 +65,10 @@ const HEAD_RANGE = Math.PI / 2 - 0.2;
 
 type GooseModelProps = {
   walking?: boolean;
-  looking?: boolean;
 };
 
 export default function GooseModel(props: GooseModelProps) {
-  const { walking, looking = true } = props;
+  const { walking } = props;
 
   const group = useRef<Group>(null);
   const gltf = useGLTF(FILE_URL) as GLTFResult;
@@ -81,7 +80,6 @@ export default function GooseModel(props: GooseModelProps) {
 
   useEffect(() => {
     scene.traverse((child) => {
-      console.log(child);
       child.frustumCulled = false;
     });
   }, [scene]);
@@ -105,20 +103,25 @@ export default function GooseModel(props: GooseModelProps) {
   useFrame(({ camera }) => {
     if (!bones || !group.current) return;
     group.current.getWorldPosition(pos);
-    const posOffset = pos.add(HEAD_OFFSET).sub(camera.position);
+    group.current.getWorldDirection(rot);
+
+    const head_off = HEAD_OFFSET.clone().applyQuaternion(
+      group.current.quaternion
+    );
+    const posOffset = pos.add(head_off).sub(camera.position);
 
     const offsetAngle = spher.setFromCartesianCoords(
       -posOffset.x,
       0,
       -posOffset.z
     ).theta;
-
-    group.current.getWorldDirection(rot);
-
     const originalAngle = spher.setFromCartesianCoords(rot.x, 0, rot.z).theta;
     const angle = offsetAngle - originalAngle;
 
-    if (Math.abs(angleToMathPiRange(angle)) <= HEAD_RANGE) {
+    if (
+      Math.abs(angleToMathPiRange(angle)) <= HEAD_RANGE &&
+      posOffset.length() < 4
+    ) {
       rotateBones(bones, angle);
     } else {
       rotateBones(bones, 0);
@@ -133,7 +136,8 @@ export default function GooseModel(props: GooseModelProps) {
 
   useLimitedFrame(1.3, () => {
     if (!honkAudio.current) return;
-    if (Math.random() < 0.08) {
+    if (Math.random() < 0.065) {
+      honkAudio.current.setVolume(0.8 + Math.random() * 0.4);
       honkAudio.current.play();
     }
   });

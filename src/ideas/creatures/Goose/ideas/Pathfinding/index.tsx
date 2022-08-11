@@ -24,8 +24,8 @@ export default function Pathfinding() {
     if (clock.getElapsedTime() > nextMove) {
       const nextDelta = 12 + Math.pow(Math.random(), 0.15) * 30;
       setNextMove(clock.elapsedTime + nextDelta);
-      target.x = (Math.random() * 2 - 1) * 8;
-      target.z = (Math.random() * 2 - 1) * 8;
+      // target.x = (Math.random() * 2 - 1) * 8;
+      // target.z = (Math.random() * 2 - 1) * 8;
     }
   });
 
