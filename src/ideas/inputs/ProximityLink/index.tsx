@@ -5,19 +5,23 @@ import { useMemo, useRef, useState } from "react";
 import { animated, useSpring } from "react-spring/three";
 import { GroupProps, useFrame } from "@react-three/fiber";
 
-export type ProximityMediaProps = {
-  media?: string;
+export type ProximityLinkProps = {
+  url?: string;
   framed?: boolean;
   frameColor?: string;
   radius?: number;
+  media?: string;
+  active?: boolean;
 } & GroupProps;
 
-export default function ProximityMedia(props: ProximityMediaProps) {
+export default function ProximityLink(props: ProximityLinkProps) {
   const {
-    media = "https://d27rt3a60hh1lx.cloudfront.net/images/turtle.jpg",
+    url = "https://muse.place",
     framed = false,
     frameColor = "#111111",
     radius = 2,
+    active = false,
+    media = "https://d27rt3a60hh1lx.cloudfront.net/images/turtle.jpg",
     ...rest
   } = props;
 
@@ -25,12 +29,11 @@ export default function ProximityMedia(props: ProximityMediaProps) {
 
   const ref = useRef<Group>(null);
   const circleRef = useRef<Mesh>(null);
-  const [visible, setVisible] = useState(false);
+  const [visible, setVisible] = useState(true);
   const { scale } = useSpring({ scale: visible ? 1 : 0 });
   const dummy = useMemo(() => new Vector3(), []);
 
   const modUrl = media.toLowerCase();
-  const IS_VIDEO = modUrl.endsWith(".mp4");
   const IS_IMAGE =
     modUrl.endsWith(".jpg") ||
     modUrl.endsWith(".jpeg") ||
@@ -48,12 +51,14 @@ export default function ProximityMedia(props: ProximityMediaProps) {
 
     ref.current.getWorldPosition(dummy);
     const dist = Math.max(dummy.distanceTo(camera.position), 0.25);
-
-    if (dist < RADIUS) setVisible(true);
-    else setVisible(false);
+    console.log(active);
+    if (dist < RADIUS && active) {
+      console.log(active);
+      window.open(url, "_self");
+    }
   });
 
-  if (!IS_VIDEO && !IS_IMAGE) {
+  if (!IS_IMAGE) {
     console.error(
       "Framed Media :: Invalid source url, must be .mp4, .jpg, .jpeg, or .png"
     );
@@ -62,10 +67,7 @@ export default function ProximityMedia(props: ProximityMediaProps) {
 
   return (
     <group name="proximity-media" ref={ref} {...rest}>
-      <animated.group scale={scale}>
-        {IS_VIDEO && (
-          <Video src={media} framed={framed} frameMaterial={frameMat} />
-        )}
+      <animated.group>
         {IS_IMAGE && (
           <Image
             src={media}

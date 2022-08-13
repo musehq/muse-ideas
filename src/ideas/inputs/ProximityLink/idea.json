@@ -1,0 +1,44 @@
+{
+    "predecessor": "1b7e781d-5cfe-46ff-89b2-805f26ece83c",
+    "id": "db54f8cf-55bc-4788-840a-1994e3e6b7a5",
+    "name": "Proximity Link",
+    "purpose": "exist. Links end visitors when they walk in given radius",
+    "schema": [
+      {
+        "name": "media",
+        "type": "image"
+      },
+      {
+        "name": "position",
+        "type": "position"
+      },
+      {
+        "name": "scale",
+        "type": "scale"
+      },
+      {
+        "name": "rotation",
+        "type": "rotation"
+      },
+      {
+        "name": "radius",
+        "type": "number"
+      },
+      {
+        "name": "framed",
+        "type": "boolean"
+      },
+      {
+          "name": "active",
+          "type": "boolean"
+      },
+      {
+          "name":"url",
+          "type":"string"
+      }
+    ],
+    "npm_dependencies": {
+      "react-spring": "9.1.2"
+    }
+  }
+  
