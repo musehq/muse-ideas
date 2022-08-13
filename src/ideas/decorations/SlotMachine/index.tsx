@@ -1,18 +1,11 @@
 import { useState, Suspense, useEffect } from "react";
 import { GroupProps } from "@react-three/fiber";
-import { useTexture } from "@react-three/drei";
-import {
-  CylinderBufferGeometry,
-  CylinderGeometry,
-  RepeatWrapping,
-  Vector2,
-} from "three";
-import { animated, useSpring } from "react-spring/three";
+import { Text } from "@react-three/drei";
 import { Image } from "spacesvr";
-import Button from "ideas/inputs/Button";
+import Button from "./components/Button";
 
 export type SlotMachineProps = {
-  numPrize: number;
+  url?: string;
 } & GroupProps;
 
 // function StartSlot(props: SlotMachineProps) {
@@ -30,7 +23,7 @@ function randomIntFromInterval(min: number, max: number) {
 }
 
 export default function SlotMachine(props: SlotMachineProps) {
-  const { ...rest } = props;
+  const { url = "https://muse.place/", ...rest } = props;
   const [onClick, setOnClick] = useState(false);
 
   const [visible, setVisible] = useState(false);
@@ -41,9 +34,9 @@ export default function SlotMachine(props: SlotMachineProps) {
     // randomize
     console.log("triggered");
     setVisible(false);
-    const real1 = randomIntFromInterval(0, icons.length);
-    const real2 = randomIntFromInterval(0, icons.length);
-    const real3 = randomIntFromInterval(0, icons.length);
+    const real1 = randomIntFromInterval(0, icons.length - 1);
+    const real2 = randomIntFromInterval(0, icons.length - 1);
+    const real3 = randomIntFromInterval(0, icons.length - 1);
     console.log("Real 1 : " + real1);
     setReal1(real1);
     setReal2(real2);
@@ -66,39 +59,18 @@ export default function SlotMachine(props: SlotMachineProps) {
   return (
     <group {...rest}>
       <group>
-        {/* <group name = "realOne" position-y={1}>
-          <Image src = "https://cdn3.iconfinder.com/data/icons/casino/256/Cherries-512.png" position-x = {1}/> 
-          <Image src = "https://cdn3.iconfinder.com/data/icons/casino/256/Cherries-512.png" />
-          <Image src = "https://cdn3.iconfinder.com/data/icons/casino/256/Cherries-512.png" position-x = {-1}/>
-        </group> */}
         <group name="realTwo">
-          <Suspense>
-            <Image
-              transparent
-              src={icons[real1] == undefined ? "" : icons[real1]}
-              position-x={1}
-            />
+          <Suspense fallback={<Text> Loading</Text>}>
+            <Image transparent src={icons[real1]} position-x={1} />
           </Suspense>
-          <Suspense>
-            <Image
-              transparent
-              src={icons[real2] == undefined ? "" : icons[real2]}
-              position-x={0}
-            />
+
+          <Suspense fallback={null}>
+            <Image transparent src={icons[real2]} position-x={0} />
           </Suspense>
-          <Suspense>
-            <Image
-              transparent
-              src={icons[real3] == undefined ? "" : icons[real3]}
-              position-x={-1}
-            />
+          <Suspense fallback={<Text> Loading</Text>}>
+            <Image transparent src={icons[real3]} position-x={-1} />
           </Suspense>
         </group>
-        {/* <group name = "realThree" position-y = {-1}>
-          <Image src = "https://cdn3.iconfinder.com/data/icons/casino/256/Cherries-512.png" position-x = {1}/> 
-          <Image src = "https://cdn3.iconfinder.com/data/icons/casino/256/Cherries-512.png" />
-          <Image src = "https://cdn3.iconfinder.com/data/icons/casino/256/Cherries-512.png" position-x = {-1}/>
-        </group> */}
       </group>
       <Button
         text="play"
@@ -112,6 +84,7 @@ export default function SlotMachine(props: SlotMachineProps) {
           position-x={1.2}
           position-y={-1}
           position-z={1}
+          onClick={() => window.open(url, "_blank")}
         />
       ) : undefined}
       ;
