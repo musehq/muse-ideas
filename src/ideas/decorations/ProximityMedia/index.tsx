@@ -67,12 +67,7 @@ export default function ProximityMedia(props: ProximityMediaProps) {
           <Video src={media} framed={framed} frameMaterial={frameMat} />
         )}
         {IS_IMAGE && (
-          <Image
-            src={media}
-            framed={framed}
-            frameMaterial={frameMat}
-            transparent={modUrl.endsWith(".png") || modUrl.endsWith(".PNG")}
-          />
+          <Image src={media} framed={framed} frameMaterial={frameMat} />
         )}
       </animated.group>
     </group>

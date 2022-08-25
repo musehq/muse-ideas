@@ -35,7 +35,7 @@
     "seedrandom": "3.0.5",
     "shopify-buy": "^2.12.0",
     "simplex-noise": "^3.0.0",
-    "spacesvr": "2.0.1",
+    "spacesvr": "2.2.0",
     "three": "0.139.2",
     "three-mesh-bvh": "^0.5.10",
     "web3": "^1.7.1"

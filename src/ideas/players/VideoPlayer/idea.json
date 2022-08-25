@@ -18,7 +18,7 @@
     },
     {
       "name": "videoSrc",
-      "type": "media"
+      "type": "video"
     },
     {
       "name": "videoDistance",
