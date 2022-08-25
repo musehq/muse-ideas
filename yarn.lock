@@ -846,6 +846,11 @@
     "@ethersproject/properties" "^5.6.0"
     "@ethersproject/strings" "^5.6.0"
 
+"@geckos.io/snapshot-interpolation@^1.1.0":
+  version "1.1.0"
+  resolved "https://registry.yarnpkg.com/@geckos.io/snapshot-interpolation/-/snapshot-interpolation-1.1.0.tgz#d89a29930b859838b8403eeebc7683f343efa752"
+  integrity sha512-Hu+tZuMpBZTyPMgqHkgv78fIzCrTpz5DeyaAktwaGL8tyYaNTGrtR9TrtKzBKgpt0YNlpHYJrT0TAfGzrl1XVw==
+
 "@humanwhocodes/config-array@^0.5.0":
   version "0.5.0"
   resolved "https://registry.yarnpkg.com/@humanwhocodes/config-array/-/config-array-0.5.0.tgz#1407967d4c6eecd7388f83acf1eaf4d0c6e58ef9"
@@ -1399,13 +1404,13 @@
     postprocessing "^6.22.2"
     react-merge-refs "^1.1.0"
 
-"@react-three/xr@^3.5.0":
-  version "3.5.0"
-  resolved "https://registry.yarnpkg.com/@react-three/xr/-/xr-3.5.0.tgz#90e41eed9b6fc492f9fb3c656ce658741d38b61a"
-  integrity sha512-Kb+dTjyOYwCw7CErZi2UYvhvTy41144HHpHpl/vvaa2B1xQKVK5vvbXJqUDzyrAcCZj5RUUx5e6W/u6NMa7miQ==
+"@react-three/xr@^4.0.1":
+  version "4.1.2"
+  resolved "https://registry.yarnpkg.com/@react-three/xr/-/xr-4.1.2.tgz#18e7edabfe8b9566a0c5a5e8bdc3f9faca1f4ae2"
+  integrity sha512-j2hCMWApFIV/cruX/EfU38QhJNMgoGxVqqpkjypuZMUuvQhQY9mZxhj+o9fyUo8YmnYwhWt6jBn1uYdFqSUWuA==
   dependencies:
-    react-merge-refs "^1.1.0"
-    three-stdlib "^2.8.6"
+    three-stdlib "^2.12.1"
+    zustand "^3.7.1"
 
 "@sentry/types@^6.11.0":
   version "6.19.6"
@@ -6369,19 +6374,20 @@ source-map@^0.5.0, source-map@^0.5.7:
   resolved "https://registry.yarnpkg.com/source-map/-/source-map-0.5.7.tgz#8a039d2d1021d22d1ea14c80d8ea468ba2ef3fcc"
   integrity sha1-igOdLRAh0i0eoUyA2OpGi6LvP8w=
 
-spacesvr@2.0.1:
-  version "2.0.1"
-  resolved "https://registry.yarnpkg.com/spacesvr/-/spacesvr-2.0.1.tgz#2d1bf0d5576b5d21b48643e78d93690cc28c9e5d"
-  integrity sha512-dPYjig2sxbVHydLw702cqRoldS4TjkcpY6QpO6Oj/sPCjC/IHGdddR/7X2WVy50RklISPmM81rNE7iLQ7yaZjA==
+spacesvr@2.0.5:
+  version "2.0.5"
+  resolved "https://registry.yarnpkg.com/spacesvr/-/spacesvr-2.0.5.tgz#66dc60b1458f79a468eb45f1ac91d4fa507d2104"
+  integrity sha512-quNZLYZ94sPVHk/Gg+x53Stg9Zh4KzuR1sKPr8nXdG6LrA4qHNnG7QW2g9PosFWHuXGCH6gvTyrWBj1HArl99Q==
   dependencies:
     "@emotion/react" "^11.4.0"
     "@emotion/styled" "^11.3.0"
+    "@geckos.io/snapshot-interpolation" "^1.1.0"
     "@juggle/resize-observer" "^3.2.0"
     "@react-spring/three" "^9.4.5"
     "@react-three/cannon" "^6.3.0"
     "@react-three/drei" "9.11.3"
     "@react-three/fiber" "^8.0.22"
-    "@react-three/xr" "^3.5.0"
+    "@react-three/xr" "^4.0.1"
     culori "^0.18.2"
     nipplejs "0.8.1"
     node-fetch "^2.6.1"
@@ -6671,10 +6677,26 @@ three-mesh-bvh@^0.5.10:
   resolved "https://registry.yarnpkg.com/three-mesh-bvh/-/three-mesh-bvh-0.5.10.tgz#6eadd0a9f63d8fc1bb3516bdc96b6ed906a888c4"
   integrity sha512-yOJPT3DhfZB/DvIr0lEfPUPMRX11HJABGapeuBa4GwgsF1NMMsy1nW1wMGxImmVyRCZ61yoor/YVqRRQV1p5VQ==
 
-three-stdlib@^2.10.1, three-stdlib@^2.8.6:
+three-stdlib@^2.10.1:
   version "2.10.2"
   resolved "https://registry.yarnpkg.com/three-stdlib/-/three-stdlib-2.10.2.tgz#4909153c491d29439d199aa47747993ba1dd4a2b"
   integrity sha512-A4++o7962jrRDo0Mm2I+2LaT62RRA8p8IJyHFnPfOxSk+90qGSm2vSfSdJ+3HugzABjStQyQuvnQmdxxZolzkw==
+  dependencies:
+    "@babel/runtime" "^7.16.7"
+    "@webgpu/glslang" "^0.0.15"
+    chevrotain "^10.1.2"
+    draco3d "^1.4.1"
+    fflate "^0.6.9"
+    ktx-parse "^0.2.1"
+    mmd-parser "^1.0.4"
+    opentype.js "^1.3.3"
+    potpack "^1.0.1"
+    zstddec "^0.0.2"
+
+three-stdlib@^2.12.1:
+  version "2.13.0"
+  resolved "https://registry.yarnpkg.com/three-stdlib/-/three-stdlib-2.13.0.tgz#48baf2f85a781437e42cd53f672ea44ccce4a801"
+  integrity sha512-hFTTX6K6y8jrDREtzx1nl029rcOYJ5R8YBWg7M3s7uhcAx0fhs4d8tS+dj82vPksLDlMW8Pu/x0CVTRrqiUFDQ==
   dependencies:
     "@babel/runtime" "^7.16.7"
     "@webgpu/glslang" "^0.0.15"

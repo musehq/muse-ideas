@@ -1,5 +1,7 @@
 {
+  "id": "bdbecfdc-c34a-4d9a-ba34-9531f17045e3",
   "name": "Goose",
+  "predecessor": "4bee8d89-9bb5-4238-8c83-95b098f88457",
   "purpose": "exist. create Goose.",
   "schema": [
     {
@@ -19,5 +21,6 @@
       "type": "string"
     }
   ],
-  "npm_dependencies": {}
+  "npm_dependencies": {},
+  "data_url": null
 }
