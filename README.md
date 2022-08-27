@@ -19,7 +19,7 @@ Join our discord to get in touch https://discord.gg/ADJSj9xtDJ
 
 1. Run `yarn install` to locally install the packages
 2. run `yarn dev` to start the local dev server
-3. Visit `localhost:3000/type/IdeaName` to access your idea. For example, to develop the Proximity Media idea located at `src/ideas/decorations/ProximityMedia`, go to `localhost:3000/decorations/ProximityMedia`
+3. Visit `localhost:3000/type/IdeaName` to access your idea. For example, to develop the Proximity Picture idea located at `src/ideas/decorations/ProximityPicture`, go to `localhost:3000/decorations/ProximityPicture`
 
 #### \> create your own idea (mac / linux)
 
@@ -52,7 +52,6 @@ This file stores the metadata as JSON for the idea you want to upload. We can he
 - position
 - rotation
 - scale
-- media (both image and video) (resource url)
 - image (resource url)
 - video (resource url)
 - number, float, integer (as of right now no difference in builder tools)

@@ -1,20 +1,20 @@
-import { Image, useLimiter, Video } from "spacesvr";
+import { Image, useLimiter } from "spacesvr";
 import * as THREE from "three";
 import { Group, Mesh, Vector3 } from "three";
 import { useMemo, useRef, useState } from "react";
 import { animated, useSpring } from "react-spring/three";
 import { GroupProps, useFrame } from "@react-three/fiber";
 
-export type ProximityMediaProps = {
-  media?: string;
+export type ProximityPictureProps = {
+  image?: string;
   framed?: boolean;
   frameColor?: string;
   radius?: number;
 } & GroupProps;
 
-export default function ProximityMedia(props: ProximityMediaProps) {
+export default function ProximityPicture(props: ProximityPictureProps) {
   const {
-    media = "https://d27rt3a60hh1lx.cloudfront.net/images/turtle.jpg",
+    image = "https://d27rt3a60hh1lx.cloudfront.net/images/turtle.jpg",
     framed = false,
     frameColor = "#111111",
     radius = 2,
@@ -28,13 +28,6 @@ export default function ProximityMedia(props: ProximityMediaProps) {
   const [visible, setVisible] = useState(false);
   const { scale } = useSpring({ scale: visible ? 1 : 0 });
   const dummy = useMemo(() => new Vector3(), []);
-
-  const modUrl = media.toLowerCase();
-  const IS_VIDEO = modUrl.endsWith(".mp4");
-  const IS_IMAGE =
-    modUrl.endsWith(".jpg") ||
-    modUrl.endsWith(".jpeg") ||
-    modUrl.endsWith(".png");
 
   const frameMat = new THREE.MeshBasicMaterial({ color: frameColor });
 
@@ -53,27 +46,10 @@ export default function ProximityMedia(props: ProximityMediaProps) {
     else setVisible(false);
   });
 
-  if (!IS_VIDEO && !IS_IMAGE) {
-    console.error(
-      "Framed Media :: Invalid source url, must be .mp4, .jpg, .jpeg, or .png"
-    );
-    return null;
-  }
-
   return (
-    <group name="proximity-media" ref={ref} {...rest}>
+    <group name="proximity-picture" ref={ref} {...rest}>
       <animated.group scale={scale}>
-        {IS_VIDEO && (
-          <Video src={media} framed={framed} frameMaterial={frameMat} />
-        )}
-        {IS_IMAGE && (
-          <Image
-            src={media}
-            framed={framed}
-            frameMaterial={frameMat}
-            transparent={modUrl.endsWith(".png") || modUrl.endsWith(".PNG")}
-          />
-        )}
+        <Image src={image} framed={framed} frameMaterial={frameMat} />
       </animated.group>
     </group>
   );

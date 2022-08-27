@@ -1,8 +1,8 @@
 {
-  "predecessor": "fa892be1-b15e-42e7-8159-ae061995ab98",
-  "id": "ac5855ff-d070-43a3-a29e-d18c66dbbac8",
+  "id": "a37875ef-f03a-400b-941c-65c4bf7430c1",
   "name": "Wall",
-  "purpose": "exist. manifest the texture wall. fix scale. rename, reorder props, bug fixes. animate w/h, rename prop. copy texture on the fly.",
+  "predecessor": "ac5855ff-d070-43a3-a29e-d18c66dbbac8",
+  "purpose": "exist. manifest the texture wall. fix scale. rename, reorder props, bug fixes. animate w/h, rename prop. copy texture on the fly. add ktx support.",
   "schema": [
     {
       "name": "position",

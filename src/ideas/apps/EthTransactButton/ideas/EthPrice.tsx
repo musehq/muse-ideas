@@ -117,7 +117,7 @@ export default function EthPrice(props: EthPriceProps) {
         </Text>
       </group>
       <group name="image-group" ref={imgGroup}>
-        <Image src={ETH_IMG} transparent size={IMG_SIZE} />
+        <Image src={ETH_IMG} size={IMG_SIZE} />
       </group>
       <group name="usd-text-group" position-y={USD_TEXT_Y_OFFSET}>
         {usdPrice && !hideUsd && (
