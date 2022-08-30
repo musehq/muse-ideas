@@ -2,7 +2,7 @@ import dynamic from "next/dynamic";
 const DeveloperReality = dynamic(import("realities/DeveloperReality"), {
   ssr: false,
 });
-const Idea = dynamic(import("ideas/decorations/ProximityMedia"), {
+const Idea = dynamic(import("ideas/decorations/ProximityPicture"), {
   ssr: false,
 });
 export default () => (

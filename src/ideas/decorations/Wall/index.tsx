@@ -1,8 +1,8 @@
 import { Suspense, useEffect, useMemo } from "react";
 import { GroupProps } from "@react-three/fiber";
-import { useTexture } from "@react-three/drei";
+import { useImage } from "spacesvr";
 import Collidable from "./modifier/Collidable";
-import { RepeatWrapping, Vector2 } from "three";
+import { CompressedTexture, RepeatWrapping, Vector2 } from "three";
 import { animated, useSpring } from "react-spring/three";
 
 export type WallProps = {
@@ -28,7 +28,7 @@ function UnSuspensedTextureWall(props: WallProps) {
     h: height,
   });
 
-  const texCopy = useTexture(texture);
+  const texCopy = useImage(texture);
   const tex = useMemo(() => texCopy.clone(), [texCopy]);
 
   // initial set up
@@ -60,11 +60,18 @@ function UnSuspensedTextureWall(props: WallProps) {
     tex.needsUpdate = true;
   }, [tiled, imgWidth, imgHeight, width, height, adjWidth, adjHeight, tex]);
 
+  const rot: [x: number, y: number, z: number] = (tex as CompressedTexture)
+    .isCompressedTexture
+    ? [0, Math.PI, Math.PI]
+    : [0, 0, 0];
+
   return (
-    <animated.mesh scale-x={w} scale-y={h}>
-      <boxGeometry args={[1, 1, 0.1]} />
-      <meshStandardMaterial map={tex} />
-    </animated.mesh>
+    <group rotation={rot}>
+      <animated.mesh scale-x={w} scale-y={h}>
+        <boxGeometry args={[1, 1, 0.1]} />
+        <meshStandardMaterial map={tex} />
+      </animated.mesh>
+    </group>
   );
 }
 

@@ -1,8 +1,8 @@
 {
-  "predecessor": "e42477d1-e004-4f0c-8ed6-7591b3b51e83",
-  "id": "72d54550-52f4-494a-9b94-e2ca765e3a63",
+  "id": "d410249f-506c-4974-94fa-cf1a50824b28",
   "name": "Drop Party NFT Gateway",
-  "purpose": "exist. block users from entering a space without a token. another pass without walletconnect. props fixes. hide colliders on auth.",
+  "predecessor": "72d54550-52f4-494a-9b94-e2ca765e3a63",
+  "purpose": "exist. block users from entering a space without a token. another pass without walletconnect. props fixes. hide colliders on auth. add ktx support.",
   "schema": [
     {
       "name": "position",
@@ -37,5 +37,6 @@
       "type": "image"
     }
   ],
-  "npm_dependencies": {}
+  "npm_dependencies": {},
+  "data_url": null
 }

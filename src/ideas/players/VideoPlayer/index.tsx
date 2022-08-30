@@ -89,7 +89,7 @@ export default function VideoPlayer(props: VideoPlayerProps) {
               />
             </meshBasicMaterial>
           ) : (
-            <meshLambertMaterial color={previewColor} />
+            <meshStandardMaterial color={previewColor} side={DoubleSide} />
           )}
         </mesh>
         {!play && previewText && (

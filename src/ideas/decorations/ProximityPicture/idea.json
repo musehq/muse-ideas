@@ -1,0 +1,35 @@
+{
+  "id": "fc5eddcc-adb1-4495-a8fa-3c29cb982332",
+  "name": "Proximity Picture",
+  "predecessor": "b88fe4b3-74bc-4c7c-9e8c-26c739c64298",
+  "purpose": "exist. display user content. present images and videos. make it appear that it is placed on a canvas and accept a link on click. Fix the stupid local props (url->link). hides/shows given a radius. support transparents. replace displayRadius with actual radius. change into ProximityPicture.",
+  "schema": [
+    {
+      "name": "image",
+      "type": "image"
+    },
+    {
+      "name": "position",
+      "type": "position"
+    },
+    {
+      "name": "scale",
+      "type": "scale"
+    },
+    {
+      "name": "rotation",
+      "type": "rotation"
+    },
+    {
+      "name": "radius",
+      "type": "radius"
+    },
+    {
+      "name": "framed",
+      "type": "boolean"
+    }
+  ],
+  "npm_dependencies": {
+    "react-spring": "9.1.2"
+  }
+}
