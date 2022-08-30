@@ -15,6 +15,8 @@ import { useFrame } from "@react-three/fiber";
 import { PositionalAudio as PositionalAudioImpl } from "three/src/audio/PositionalAudio";
 import { useLimitedFrame } from "spacesvr";
 import { useMind } from "../../layers/Mind";
+import Nametag from "../../ideas/Nametag";
+import FollowBone from "../../ideas/FollowBone";
 
 type ActionName =
   | "attack"
@@ -59,10 +61,11 @@ const HEAD_RANGE = Math.PI / 2 - 0.2;
 
 type GooseModelProps = {
   walking?: boolean;
+  name?: string;
 };
 
 export default function GooseModel(props: GooseModelProps) {
-  const { walking } = props;
+  const { walking, name } = props;
 
   const group = useRef<Group>(null);
   const gltf = useGLTF(FILE_URL) as GLTFResult;
@@ -173,6 +176,15 @@ export default function GooseModel(props: GooseModelProps) {
               material={materials.eye}
               skeleton={nodes.goose_3.skeleton}
             />
+            {name && (
+              <FollowBone
+                bone={bones.spine1}
+                position={[0.215, 0.64, 1.15]}
+                scale={6.25}
+              >
+                <Nametag name={name} scale={1} rotation={[-1.45, 0.25, 0]} />
+              </FollowBone>
+            )}
           </group>
         </group>
       </group>

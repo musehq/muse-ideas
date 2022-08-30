@@ -11,6 +11,8 @@ import { Group, Quaternion, Vector3 } from "three";
 import { useCapsuleCollider } from "./logic/collider";
 import { setYRotFromXZ } from "../../ideas/Pathfinding/logic/move";
 import { useLimitedFrame } from "spacesvr";
+import { GroupProps } from "@react-three/fiber";
+import { getVecPos, useInitialPosition } from "./logic/initPos";
 
 type BodyState = {
   pos: Vector3;
@@ -21,15 +23,18 @@ export const BodyContext = createContext({} as BodyState);
 export const BodyConsumer = BodyContext.Consumer;
 export const useBody = () => useContext(BodyContext);
 
-type BodyLayerProps = {
+type PickRename<T, K extends keyof T, R extends PropertyKey> = Omit<T, K> &
+  { [P in R]: T[K] };
+
+type BodyProps = {
   children: ReactNode | ReactNode[];
   speed?: number;
   height?: number;
   radius?: number;
-};
+} & PickRename<GroupProps, "position", "initPos">;
 
-export default function BodyLayer(props: BodyLayerProps) {
-  const { speed = 1, height = 0.9, radius = 0.2, children } = props;
+export default function Body(props: BodyProps) {
+  const { speed = 1, height = 0.9, radius = 0.2, children, initPos } = props;
 
   const SPEED = speed * 1.2;
   const group = useRef<Group>(null);
@@ -37,10 +42,7 @@ export default function BodyLayer(props: BodyLayerProps) {
 
   // readonly values ================================================================
   const pos = useMemo(
-    () =>
-      group.current
-        ?.getWorldPosition(new Vector3())
-        .add(new Vector3(0, height, 0)) || new Vector3(0, height, 0),
+    () => getVecPos(initPos).add(new Vector3(0, height, 0)),
     []
   );
   const vel = useMemo(() => new Vector3(), []);
@@ -50,6 +52,8 @@ export default function BodyLayer(props: BodyLayerProps) {
     bodyApi.velocity.subscribe((v) => vel.fromArray(v));
   }, []);
 
+  useInitialPosition(initPos, bodyApi, height);
+
   // mutable values ================================================================
   const targetRot = useMemo(() => new Quaternion(), []);
   const dir = useMemo(() => new Vector3(), []);
@@ -58,7 +62,7 @@ export default function BodyLayer(props: BodyLayerProps) {
     if (!group.current) return;
 
     // helpers ================================================================
-    const lookAtTarget = () => setYRotFromXZ(targetRot, dir.x, dir.z);
+    const faceTarget = () => setYRotFromXZ(targetRot, dir.x, dir.z);
     const lookAtPlayer = () =>
       setYRotFromXZ(
         targetRot,
@@ -81,7 +85,7 @@ export default function BodyLayer(props: BodyLayerProps) {
       bodyApi.velocity.set(0, 0, 0);
     } else {
       setMoving(true);
-      lookAtTarget();
+      faceTarget();
       bodyApi.velocity.set(dir.x * SPEED, vel.y, dir.z * SPEED);
     }
   });

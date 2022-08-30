@@ -2,11 +2,17 @@ import { Mind } from "../layers/Mind";
 import { Vector3 } from "three";
 import { RootState } from "@react-three/fiber/dist/declarations/src/core/store";
 
+type GooseBeliefs = {
+  alwaysFollow: boolean;
+};
+
 export class GooseMind implements Mind {
   target: Vector3;
   targetVector: Vector3;
 
   state: "wander" | "idle" | "follow" | "attack";
+
+  beliefs: GooseBeliefs = { alwaysFollow: false };
 
   playerInSight: boolean;
 
@@ -29,7 +35,6 @@ export class GooseMind implements Mind {
     if (rand < 0.002 && timeSinceLast > 4) {
       this.lastStateChange = state.clock.getElapsedTime();
       this.sendSignal("time");
-      console.log("state: ", this.state);
     }
   }
 
@@ -44,6 +49,11 @@ export class GooseMind implements Mind {
         this.playerInSight = false;
         break;
       case "time":
+        if (this.beliefs.alwaysFollow) {
+          this.state = "follow";
+          break;
+        }
+
         if (this.state === "wander") {
           if (this.playerInSight) {
             if (rand < 0.3) this.state = "follow";
@@ -63,7 +73,16 @@ export class GooseMind implements Mind {
           if (rand < 0.5) this.state = "idle";
           else this.state = "wander";
         }
+
         break;
+    }
+  }
+
+  updateBeliefs(beliefs: Partial<GooseBeliefs>) {
+    if (Object.keys(beliefs).includes("alwaysFollow")) {
+      this.beliefs.alwaysFollow = beliefs.alwaysFollow == true;
+      if (this.beliefs.alwaysFollow) this.state = "follow";
+      else this.state = "wander";
     }
   }
 }

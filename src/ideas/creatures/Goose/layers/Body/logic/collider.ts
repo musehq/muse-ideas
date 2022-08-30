@@ -1,5 +1,6 @@
 import { ShapeType, Triplet, useCompoundBody } from "@react-three/cannon";
-import { useMemo } from "react";
+import { useEffect, useMemo, useState } from "react";
+import { useEnvironment } from "spacesvr";
 
 // height of 0.9 (eye level) for a perceived height of 1
 export const useCapsuleCollider = (
@@ -7,6 +8,9 @@ export const useCapsuleCollider = (
   height = 0.9,
   radius = height / 3
 ) => {
+  const { paused } = useEnvironment();
+  const [setup, setSetup] = useState(false);
+
   const vPos = pos as Triplet;
 
   const HEIGHT = height;
@@ -24,13 +28,20 @@ export const useCapsuleCollider = (
   }, [HEIGHT, RADIUS]);
 
   const compoundBody = useCompoundBody(() => ({
-    mass: 60,
+    mass: 0,
     position: vPos,
     segments: 8,
     fixedRotation: true,
     type: "Dynamic",
     shapes: spheres,
   }));
+
+  useEffect(() => {
+    if (!paused && !setup) {
+      compoundBody[1].mass?.set(30);
+      setSetup(true);
+    }
+  }, [setup, paused, compoundBody]);
 
   return compoundBody;
 };
