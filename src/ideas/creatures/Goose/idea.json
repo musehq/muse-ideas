@@ -1,0 +1,22 @@
+{
+  "id": "beed4009-baa2-4ffa-aec4-225cd36e1fbf",
+  "name": "Goose",
+  "predecessor": "bdbecfdc-c34a-4d9a-ba34-9531f17045e3",
+  "purpose": "exist. create Goose. give the goose some id, beliefs, and bug fixes.",
+  "schema": [
+    {
+      "name": "position",
+      "type": "position"
+    },
+    {
+      "name": "name",
+      "type": "string"
+    },
+    {
+      "name": "alwaysFollow",
+      "type": "boolean"
+    }
+  ],
+  "npm_dependencies": {},
+  "data_url": null
+}
