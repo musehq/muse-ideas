@@ -1,0 +1,25 @@
+{
+  "id": "f7090c43-7-c94-4380-b9a4-2e7341008fa9",
+  "name": "HidingDuck",
+  "predecessor": "4bee8d89-9bb5-4238-8c83-95b098f88457",
+  "purpose": "exist, hiding duck",
+  "schema": [
+    {
+      "name": "position",
+      "type": "position"
+    },
+    {
+      "name": "rotation",
+      "type": "rotation"
+    },
+    {
+      "name": "scale",
+      "type": "scale"
+    },
+    {
+      "name": "distance",
+      "type": "radius"
+    }
+  ],
+  "npm_dependencies": {}
+}
