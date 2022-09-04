@@ -1,0 +1,31 @@
+{
+  "name": "Fog Machine",
+  "purpose": "exist. create Fog Machine.",
+  "schema": [
+    {
+      "name": "position",
+      "type": "position"
+    },
+    {
+      "name": "rotation",
+      "type": "rotation"
+    },
+    {
+      "name": "scale",
+      "type": "scale"
+    },
+    {
+      "name": "color",
+      "type": "color"
+    },
+    {
+      "name": "near",
+      "type": "number"
+    },
+    {
+      "name": "far",
+      "type": "number"
+    }
+  ],
+  "npm_dependencies": {}
+}
