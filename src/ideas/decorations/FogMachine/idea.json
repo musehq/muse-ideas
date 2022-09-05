@@ -1,6 +1,7 @@
 {
   "name": "Fog Machine",
   "purpose": "exist. create Fog Machine.",
+  "predecessor": "4bee8d89-9bb5-4238-8c83-95b098f88457",
   "schema": [
     {
       "name": "position",
@@ -13,6 +14,10 @@
     {
       "name": "scale",
       "type": "scale"
+    },
+    {
+      "name": "enabled",
+      "type": "boolean"
     },
     {
       "name": "color",

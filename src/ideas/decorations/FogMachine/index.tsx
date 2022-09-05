@@ -1,7 +1,8 @@
-import { Spinning } from "spacesvr";
+import { Collidable } from "spacesvr";
 import { GroupProps, useThree } from "@react-three/fiber";
-import { useEffect, useMemo, useRef } from "react";
+import { useEffect, useRef, Suspense } from "react";
 import { Fog, FogBase } from "three";
+import GeneralModel from "./ideas/GeneralModel";
 
 type FogMachineProps = {
   color?: string;
@@ -9,6 +10,9 @@ type FogMachineProps = {
   far?: number;
   enabled?: boolean;
 } & GroupProps;
+
+const MODEL_URL =
+  "https://d1htv66kutdwsl.cloudfront.net/e6f54a93-5de2-40e7-9a0c-62c833892366/ca5726f6-ddb0-4b99-ab43-178d1932a689.glb";
 
 export default function FogMachine(props: FogMachineProps) {
   const { color = "#d0d0d0", near, far, enabled, ...rest } = props;
@@ -18,7 +22,6 @@ export default function FogMachine(props: FogMachineProps) {
   const lastFog = useRef<FogBase | null>(null);
   const thisFog = useRef<Fog | null>(null);
 
-  // apply current fog
   useEffect(() => {
     // save last fog unless current fog is loaded
     if (!thisFog.current) lastFog.current = scene.fog;
@@ -33,11 +36,12 @@ export default function FogMachine(props: FogMachineProps) {
   }, [color, near, far, enabled]);
 
   return (
-    <group name="FogMachine" {...rest}>
-      <mesh>
-        <boxBufferGeometry args={[1, 1, 1]} />
-        <meshStandardMaterial color={color} />
-      </mesh>
+    <group name="fog-machine" {...rest}>
+      <Collidable triLimit={100}>
+        <Suspense fallback={null}>
+          <GeneralModel url={MODEL_URL} />
+        </Suspense>
+      </Collidable>
     </group>
   );
 }
