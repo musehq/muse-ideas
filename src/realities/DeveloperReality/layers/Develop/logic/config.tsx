@@ -13,7 +13,7 @@ export default function useConfig(manifest?: Manifest) {
     });
     return o;
   }, [manifest]);
-  const config = useControls(settings, [settings, manifest]);
+  const config = useControls("Idea Props", settings, [settings, manifest]);
   if (!manifest) return undefined;
   return config;
 }
