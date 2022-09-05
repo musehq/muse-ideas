@@ -20,32 +20,31 @@ const MODEL_URL =
   "https://d1htv66kutdwsl.cloudfront.net/e6f54a93-5de2-40e7-9a0c-62c833892366/ca5726f6-ddb0-4b99-ab43-178d1932a689.glb";
 
 export default function FogMachine(props: FogMachineProps) {
-  const { color = "#d0d0d0", near, far, enabled, ...rest } = props;
+  const { color = "#d0d0d0", near = 1, far = 80, enabled, ...rest } = props;
 
   const scene = useThree((st) => st.scene);
 
   const lastFog = useRef<FogBase | null>(null);
-  const thisFog = useRef<Fog | null>(null);
-
-  useEffect(() => {
-    // save last fog unless current fog is loaded
-    if (!thisFog.current) lastFog.current = scene.fog;
-
-    if (!enabled) {
-      scene.fog = lastFog.current;
-      thisFog.current = null;
-    } else {
-      thisFog.current = new Fog(color, near, far);
-      scene.fog = thisFog.current;
-    }
-  }, [color, near, far, enabled]);
+  const thisFog = useRef<Fog>(new Fog(color, near, far));
 
   // change back on unload
   useEffect(() => {
+    lastFog.current = scene.fog;
     return () => {
-      if (lastFog.current) scene.fog = lastFog.current;
+      scene.fog = lastFog.current;
     };
   }, []);
+
+  useEffect(() => {
+    if (!enabled) {
+      scene.fog = lastFog.current;
+    } else {
+      thisFog.current.color.set(color);
+      thisFog.current.near = near;
+      thisFog.current.far = far;
+      scene.fog = thisFog.current;
+    }
+  }, [color, near, far, enabled]);
 
   return (
     <group name="fog-machine" {...rest}>
