@@ -47,11 +47,6 @@ export default function FogMachine(props: FogMachineProps) {
     };
   }, []);
 
-  const ref = useRef<any>(null);
-
-  console.log("ref");
-  console.log(ref);
-
   return (
     <group name="fog-machine" {...rest}>
       <Collidable triLimit={100}>
@@ -63,7 +58,7 @@ export default function FogMachine(props: FogMachineProps) {
       </Collidable>
       {enabled && (
         <Suspense fallback={null}>
-          <PositionalAudio ref={ref} url={AUDIO_URL} distance={0.5} autoplay />
+          <PositionalAudio url={AUDIO_URL} distance={0.5} autoplay />
         </Suspense>
       )}
       {enabled && (
