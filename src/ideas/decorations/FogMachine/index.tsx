@@ -67,18 +67,3 @@ export default function FogMachine(props: FogMachineProps) {
     </group>
   );
 }
-
-//  /** Number of particles (default: 100) */
-// count?: number
-// /** Speed of particles (default: 1) */
-// speed?: number | Float32Array
-// /** Opacity of particles (default: 1) */
-// opacity?: number | Float32Array
-// /** Color of particles (default: 100) */
-// color?: THREE.ColorRepresentation | Float32Array
-// /** Size of particles (default: randomized between 0 and 1) */
-// size?: number | Float32Array
-// /** The space the particles occupy (default: 1) */
-// scale?: number | [number, number, number] | THREE.Vector3
-// /** Movement factor (default: 1) */
-// noise?: number | [number, number, number] | THREE.Vector3 | Float32Array
