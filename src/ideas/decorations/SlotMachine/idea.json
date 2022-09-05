@@ -21,16 +21,32 @@
       "type": "number"
     },
     {
-      "name": "texture",
+      "name": "num_of_icons",
+      "type": "number"
+    },
+    {
+      "name": "num_plays_per_day",
+      "type": "number"
+    },
+    {
+      "name": "url",
+      "type": "string"
+    },
+    {
+      "name": "picture_a",
       "type": "image"
     },
     {
-      "name": "tiled",
-      "type": "boolean"
+      "name": "picture_b",
+      "type": "image"
     },
     {
-      "name": "tileSize",
-      "type": "number"
+      "name": "picture_c",
+      "type": "image"
+    },
+    {
+      "name": "picture_d",
+      "type": "image"
     }
   ],
   "npm_dependencies": {
