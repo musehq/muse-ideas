@@ -35,6 +35,13 @@ export default function FogMachine(props: FogMachineProps) {
     }
   }, [color, near, far, enabled]);
 
+  // change back on unload
+  useEffect(() => {
+    return () => {
+      if (lastFog.current) scene.fog = lastFog.current;
+    };
+  }, []);
+
   return (
     <group name="fog-machine" {...rest}>
       <Collidable triLimit={100}>
