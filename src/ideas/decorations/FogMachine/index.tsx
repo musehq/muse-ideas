@@ -1,5 +1,6 @@
 import { Collidable } from "spacesvr";
 import { GroupProps, useThree } from "@react-three/fiber";
+import { Sparkles } from "@react-three/drei";
 import { useEffect, useRef, Suspense } from "react";
 import { Fog, FogBase } from "three";
 import GeneralModel from "./ideas/GeneralModel";
@@ -49,6 +50,35 @@ export default function FogMachine(props: FogMachineProps) {
           <GeneralModel url={MODEL_URL} />
         </Suspense>
       </Collidable>
+      {enabled && (
+        <Sparkles
+          count={150}
+          position-y={0.01}
+          scale={[1.05, 0.01, 0.5]}
+          rotation-y={0.4}
+          opacity={0.75}
+          size={20}
+          speed={0.2}
+          noise={40.1}
+          position-z={0.7}
+          color={color}
+        />
+      )}
     </group>
   );
 }
+
+//  /** Number of particles (default: 100) */
+// count?: number
+// /** Speed of particles (default: 1) */
+// speed?: number | Float32Array
+// /** Opacity of particles (default: 1) */
+// opacity?: number | Float32Array
+// /** Color of particles (default: 100) */
+// color?: THREE.ColorRepresentation | Float32Array
+// /** Size of particles (default: randomized between 0 and 1) */
+// size?: number | Float32Array
+// /** The space the particles occupy (default: 1) */
+// scale?: number | [number, number, number] | THREE.Vector3
+// /** Movement factor (default: 1) */
+// noise?: number | [number, number, number] | THREE.Vector3 | Float32Array
