@@ -1,7 +1,8 @@
 {
+  "id": "6f3c92ab-5d1f-4019-84f2-07632045d1ed",
   "name": "Fog Machine",
-  "purpose": "exist. create Fog Machine.",
   "predecessor": "4bee8d89-9bb5-4238-8c83-95b098f88457",
+  "purpose": "exist. create Fog Machine.",
   "schema": [
     {
       "name": "position",
@@ -32,5 +33,6 @@
       "type": "number"
     }
   ],
-  "npm_dependencies": {}
+  "npm_dependencies": {},
+  "data_url": null
 }
