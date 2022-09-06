@@ -66,9 +66,14 @@ export default function SlotMachine(props: SlotMachineProps) {
   const slotGame = () => {
     console.log("triggered");
     setVisible(false);
-    const real1Result = randomIntFromInterval(0, num_of_icons - 1);
-    const real2Result = randomIntFromInterval(0, num_of_icons - 1);
-    const real3Result = randomIntFromInterval(0, num_of_icons - 1);
+
+    let iconsUsed = num_of_icons;
+    if (num_of_icons > 4) {
+      iconsUsed = 4;
+    }
+    const real1Result = randomIntFromInterval(0, iconsUsed - 1);
+    const real2Result = randomIntFromInterval(0, iconsUsed - 1);
+    const real3Result = randomIntFromInterval(0, iconsUsed - 1);
 
     setReal1(real1Result);
     setReal2(real2Result);
