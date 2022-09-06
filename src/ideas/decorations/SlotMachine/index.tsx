@@ -6,13 +6,12 @@ import Button from "./components/Button";
 
 export type SlotMachineProps = {
   url?: string;
-  numReals?: number;
-  picture_a?: string;
-  picture_b?: string;
-  picture_c?: string;
-  picture_d?: string;
-  num_plays_per_day?: number;
-  num_of_icons?: number;
+  pictureA?: string;
+  pictureB?: string;
+  pictureC?: string;
+  pictureD?: string;
+  playsPerDay?: number;
+  numOfIcons?: number;
 } & GroupProps;
 
 function randomIntFromInterval(min: number, max: number) {
@@ -46,16 +45,16 @@ function getWithExpiry(key: string) {
 export default function SlotMachine(props: SlotMachineProps) {
   const {
     url = "https://muse.place/",
-    picture_a = "https://d27rt3a60hh1lx.cloudfront.net/images/casino/cherry.png",
-    picture_b = "https://d27rt3a60hh1lx.cloudfront.net/images/casino/diamond.png",
-    picture_c = "https://d27rt3a60hh1lx.cloudfront.net/images/casino/lucky7.png",
-    picture_d = "https://d27rt3a60hh1lx.cloudfront.net/images/casino/grape.png",
-    num_plays_per_day = 3,
-    num_of_icons = 4,
+    pictureA = "https://d27rt3a60hh1lx.cloudfront.net/images/casino/cherry.png",
+    pictureB = "https://d27rt3a60hh1lx.cloudfront.net/images/casino/diamond.png",
+    pictureC = "https://d27rt3a60hh1lx.cloudfront.net/images/casino/lucky7.png",
+    pictureD = "https://d27rt3a60hh1lx.cloudfront.net/images/casino/grape.png",
+    playsPerDay = 3,
+    numOfIcons = 4,
     ...rest
   } = props;
 
-  const icons = [picture_a, picture_b, picture_c, picture_d];
+  const icons = [pictureA, pictureB, pictureC, pictureD];
 
   const [visible, setVisible] = useState(false);
   const [messageVisible, setMessageVisible] = useState(false);
@@ -67,8 +66,8 @@ export default function SlotMachine(props: SlotMachineProps) {
     console.log("triggered");
     setVisible(false);
 
-    let iconsUsed = num_of_icons;
-    if (num_of_icons > 4) {
+    let iconsUsed = numOfIcons;
+    if (numOfIcons > 4) {
       iconsUsed = 4;
     }
     const real1Result = randomIntFromInterval(0, iconsUsed - 1);
@@ -90,8 +89,9 @@ export default function SlotMachine(props: SlotMachineProps) {
   const slotExecuteGame = () => {
     if (
       getWithExpiry("playsToday") == null ||
-      getWithExpiry("playsToday") < num_plays_per_day
+      getWithExpiry("playsToday") < playsPerDay
     ) {
+      setMessageVisible(false);
       let plays = 0;
       if (getWithExpiry("playsToday") != null) {
         plays = getWithExpiry("playsToday");
@@ -105,7 +105,7 @@ export default function SlotMachine(props: SlotMachineProps) {
   };
 
   return (
-    <group {...rest}>
+    <group name="slot-machine" {...rest}>
       <group>
         <group name="realTwo">
           <Suspense fallback={<Text> Loading</Text>}>
@@ -140,7 +140,6 @@ export default function SlotMachine(props: SlotMachineProps) {
           You are out of plays. Try again tomorrow.
         </Text>
       ) : undefined}
-      ;
     </group>
   );
 }
