@@ -1,4 +1,5 @@
 {
+<<<<<<< Updated upstream
   "predecessor": "fa892be1-b15e-42e7-8159-ae061995ab98",
   "id": "ac5855ff-d070-43a3-a29e-d18c66dbbac8",
   "name": "Wall",
@@ -53,3 +54,60 @@
     "react-spring": "9.1.2"
   }
 }
+=======
+    "id": "ac5855ff-d070-43a3-a29e-d18c66dbbac8",
+    "name": "Slot Machine",
+    "purpose": "Open a casino",
+    "schema": [
+      {
+        "name": "position",
+        "type": "position"
+      },
+      {
+        "name": "rotation",
+        "type": "rotation"
+      },
+      {
+        "name": "width",
+        "type": "number"
+      },
+      {
+        "name": "height",
+        "type": "number"
+      },
+      {
+        "name": "num_of_icons",
+        "type": "number"
+      },
+      {
+        "name": "num_plays_per_day",
+        "type": "number"
+      },
+      {
+        "name": "url",
+        "type": "string"
+      },
+      {
+        "name": "picture_a",
+        "type": "image"
+      },
+      {
+        "name": "picture_b",
+        "type": "image"
+      },
+      {
+        "name": "picture_c",
+        "type": "image"
+      },
+      {
+        "name": "picture_d",
+        "type": "image"
+      }
+    ],
+    "npm_dependencies": {
+      "react-spring": "9.1.2"
+    }
+  }
+  
+  
+>>>>>>> Stashed changes
