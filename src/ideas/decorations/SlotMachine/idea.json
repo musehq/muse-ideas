@@ -1,0 +1,49 @@
+{
+  "name": "Slot Machine",
+  "purpose": "Install a sloat machine in your world to have some fun.",
+  "schema": [
+    {
+      "name": "position",
+      "type": "position"
+    },
+    {
+      "name": "scale",
+      "type": "scale"
+    },
+    {
+      "name": "rotation",
+      "type": "rotation"
+    },
+    {
+      "name": "numOfIcons",
+      "type": "number"
+    },
+    {
+      "name": "playsPerDay",
+      "type": "number"
+    },
+    {
+      "name": "url",
+      "type": "string"
+    },
+    {
+      "name": "pictureA",
+      "type": "image"
+    },
+    {
+      "name": "pictureB",
+      "type": "image"
+    },
+    {
+      "name": "pictureC",
+      "type": "image"
+    },
+    {
+      "name": "pictureD",
+      "type": "image"
+    }
+  ],
+  "npm_dependencies": {
+    "react-spring": "9.1.2"
+  }
+}
