@@ -1,8 +1,7 @@
 {
-  "predecessor": "fa892be1-b15e-42e7-8159-ae061995ab98",
   "id": "ac5855ff-d070-43a3-a29e-d18c66dbbac8",
-  "name": "Wall",
-  "purpose": "exist. manifest the texture wall. fix scale. rename, reorder props, bug fixes. animate w/h, rename prop. copy texture on the fly.",
+  "name": "Slot Machine",
+  "purpose": "Open a gambling hall.",
   "schema": [
     {
       "name": "position",
