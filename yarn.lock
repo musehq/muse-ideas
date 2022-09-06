@@ -6379,10 +6379,10 @@ source-map@^0.5.0, source-map@^0.5.7:
   resolved "https://registry.yarnpkg.com/source-map/-/source-map-0.5.7.tgz#8a039d2d1021d22d1ea14c80d8ea468ba2ef3fcc"
   integrity sha1-igOdLRAh0i0eoUyA2OpGi6LvP8w=
 
-spacesvr@2.2.1:
-  version "2.2.1"
-  resolved "https://registry.yarnpkg.com/spacesvr/-/spacesvr-2.2.1.tgz#87bb5745d6630318f5cac41e23b0575a829dd022"
-  integrity sha512-P4JYDpJP/RZAKn50wUkzWoh54lUUwzECW8sVWDGTxw0VbqaEB2+QhDarC8NAlUcrQPMYGWWqEWDW89g9E0bi7Q==
+spacesvr@2.3.0:
+  version "2.3.0"
+  resolved "https://registry.yarnpkg.com/spacesvr/-/spacesvr-2.3.0.tgz#d5c9556abe7c7a880f4f793b1e34e99d652013dd"
+  integrity sha512-ZVHbrGlhfOh2laj7z6Teub5N2fHjsxPCMCWTm3cPVOg4cfhorjfDiX1GcMAtGOJjHeanUnH2njewaX6BVM+ZGA==
   dependencies:
     "@emotion/react" "^11.4.0"
     "@emotion/styled" "^11.3.0"
