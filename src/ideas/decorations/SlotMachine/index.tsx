@@ -109,14 +109,13 @@ export default function SlotMachine(props: SlotMachineProps) {
       <group>
         <group name="realTwo">
           <Suspense fallback={<Text> Loading</Text>}>
-            <Image transparent src={icons[real1]} position-x={1} />
-          </Suspense>
-
-          <Suspense fallback={<Text> Loading</Text>}>
-            <Image transparent src={icons[real2]} position-x={0} />
+            <Image src={icons[real1]} position-x={1} />
           </Suspense>
           <Suspense fallback={<Text> Loading</Text>}>
-            <Image transparent src={icons[real3]} position-x={-1} />
+            <Image src={icons[real2]} position-x={0} />
+          </Suspense>
+          <Suspense fallback={<Text> Loading</Text>}>
+            <Image src={icons[real3]} position-x={-1} />
           </Suspense>
         </group>
       </group>
