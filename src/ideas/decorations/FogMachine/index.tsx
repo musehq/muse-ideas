@@ -1,8 +1,8 @@
-import { Collidable } from "spacesvr";
+import { Collidable, useEnvironment } from "spacesvr";
 import { GroupProps, useThree } from "@react-three/fiber";
 import { Sparkles, PositionalAudio } from "@react-three/drei";
-import { useEffect, useRef, Suspense } from "react";
-import { Fog, FogBase } from "three";
+import { useEffect, useRef, Suspense, useLayoutEffect } from "react";
+import { Fog, FogBase, PositionalAudio as PositionalAudioType } from "three";
 import GeneralModel from "./ideas/GeneralModel";
 import Shake from "./ideas/Shake";
 
@@ -23,9 +23,12 @@ export default function FogMachine(props: FogMachineProps) {
   const { color = "#d0d0d0", near = 1, far = 80, enabled, ...rest } = props;
 
   const scene = useThree((st) => st.scene);
+  const { paused } = useEnvironment();
 
   const lastFog = useRef<FogBase | null>(null);
-  const thisFog = useRef<Fog>(new Fog(color, near, far));
+  const thisFog = useRef(new Fog(color, near, far));
+
+  const posAudio = useRef<PositionalAudioType>();
 
   // change back on unload
   useEffect(() => {
@@ -46,6 +49,20 @@ export default function FogMachine(props: FogMachineProps) {
     }
   }, [color, near, far, enabled]);
 
+  useLayoutEffect(() => {
+    if (!posAudio.current) return;
+    if (enabled) {
+      posAudio.current.setDistanceModel("linear");
+      posAudio.current.setRolloffFactor(2.4);
+      posAudio.current.setRefDistance(0.05);
+      posAudio.current.setMaxDistance(3);
+      posAudio.current.setVolume(0.8);
+      posAudio.current.play();
+    } else {
+      posAudio.current?.pause();
+    }
+  }, [enabled, paused]);
+
   return (
     <group name="fog-machine" {...rest}>
       <Collidable triLimit={100}>
@@ -55,11 +72,9 @@ export default function FogMachine(props: FogMachineProps) {
           </Shake>
         </Suspense>
       </Collidable>
-      {enabled && (
-        <Suspense fallback={null}>
-          <PositionalAudio url={AUDIO_URL} distance={0.5} autoplay />
-        </Suspense>
-      )}
+      <Suspense fallback={null}>
+        <PositionalAudio url={AUDIO_URL} distance={0.5} ref={posAudio} loop />
+      </Suspense>
       {enabled && (
         <Sparkles
           count={150}
