@@ -15,9 +15,11 @@
       "type": "scale"
     },
     {
-      "name": "color",
-      "type": "color"
+      "name": "enable",
+      "type": "boolean"
     }
   ],
-  "npm_dependencies": {}
+  "npm_dependencies": {
+    "@react-spring/three": "^9.5.2"
+  }
 }

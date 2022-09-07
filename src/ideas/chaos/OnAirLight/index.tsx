@@ -1,23 +1,47 @@
-import { Interactable, useNetwork } from "spacesvr";
+import { useNetwork } from "spacesvr";
 import { GroupProps } from "@react-three/fiber";
+import { useEffect } from "react";
+import { Text } from "@react-three/drei";
+import { MicAndLight } from "./ideas/MicAndLight";
 
 type OnAirLightProps = {
-  color?: string;
+  enable?: boolean;
 } & GroupProps;
 
-export default function OnAirLight(props: OnAirLightProps) {
-  const { color = "white", ...rest } = props;
+const FONT_URL =
+  "https://d27rt3a60hh1lx.cloudfront.net/fonts/BlueHighwayCondensed.otf";
 
-  const { voice, setVoice } = useNetwork();
+export default function OnAirLight(props: OnAirLightProps) {
+  const { enable, ...rest } = props;
+
+  const { connected, voice, setVoice } = useNetwork();
+
+  // this is all the logic
+  useEffect(() => {
+    if (!connected) return;
+    if (voice != !!enable) setVoice(!!enable);
+  }, [connected, voice, enable]);
 
   return (
     <group name="OnAirLight" {...rest}>
-      <Interactable onClick={() => setVoice(!voice)}>
-        <mesh>
-          <boxBufferGeometry args={[1, 1, 1]} />
-          <meshStandardMaterial color={voice ? "red" : "black"} />
-        </mesh>
-      </Interactable>
+      <MicAndLight
+        rotation-y={Math.PI}
+        scale={1.95}
+        connected={connected}
+        voice={voice}
+        enable={enable}
+      />
+      {!connected && (
+        <Text
+          font={FONT_URL}
+          color="red"
+          fontSize={0.125}
+          rotation-z={-0.25}
+          position={[0.1, 0.15, 0.1]}
+        >
+          not connected
+        </Text>
+      )}
     </group>
   );
 }
