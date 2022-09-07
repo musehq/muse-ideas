@@ -26,7 +26,7 @@ export default function OnAirLight(props: OnAirLightProps) {
     <group name="OnAirLight" {...rest}>
       <MicAndLight
         rotation-y={Math.PI}
-        scale={1.95}
+        scale={1.75}
         connected={connected}
         voice={voice}
         enable={enable}

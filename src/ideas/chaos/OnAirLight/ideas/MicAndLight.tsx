@@ -3,6 +3,7 @@ import { useGLTF } from "@react-three/drei";
 import { GLTF } from "three-stdlib";
 import { GroupProps } from "@react-three/fiber";
 import { animated, useSpring } from "@react-spring/three";
+import { Collidable } from "spacesvr";
 
 type GLTFResult = GLTF & {
   nodes: {
@@ -51,7 +52,9 @@ export function MicAndLight(props: MicAndLightProps) {
         {/* @ts-ignore */}
         <animated.meshStandardMaterial color={textColor} />
       </mesh>
-      <mesh geometry={nodes.on_air_1.geometry} material={materials.chrome} />
+      <Collidable>
+        <mesh geometry={nodes.on_air_1.geometry} material={materials.chrome} />
+      </Collidable>
       <mesh geometry={nodes.on_air_2.geometry}>
         <animated.meshStandardMaterial
           map={materials.light.map}
