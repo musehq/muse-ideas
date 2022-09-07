@@ -1,5 +1,7 @@
 {
+  "id": "dd301fb7-1137-405a-a352-98c31b9f0dd6",
   "name": "OnAirLight",
+  "predecessor": "4bee8d89-9bb5-4238-8c83-95b098f88457",
   "purpose": "exist. create OnAirLight.",
   "schema": [
     {
@@ -21,5 +23,6 @@
   ],
   "npm_dependencies": {
     "@react-spring/three": "^9.5.2"
-  }
+  },
+  "data_url": null
 }
