@@ -8,12 +8,21 @@ type Bones = {
   neck3: Bone;
   neck2: Bone;
   neck1: Bone;
+  spine1: Bone;
 };
 
 export const useBones = (mainBone: Bone) => {
   return useMemo<Bones>(() => {
     const bones: Bones = {} as Bones;
-    const names = ["head", "mouth", "neck4", "neck3", "neck2", "neck1"];
+    const names = [
+      "head",
+      "mouth",
+      "neck4",
+      "neck3",
+      "neck2",
+      "neck1",
+      "spine1",
+    ];
     mainBone.traverse((node) => {
       if (names.includes((node as Bone).name)) {
         // @ts-ignore
