@@ -21,11 +21,13 @@ export const useInitialPosition = (
 
   const lastPos = useRef(getInitPos());
 
+  const lock = useRef(false);
   const [reset, setReset] = useState(false);
 
   useLimitedFrame(5, () => {
-    if (!reset && getInitPos().equals(lastPos.current)) return;
+    if (!lock.current && getInitPos().equals(lastPos.current)) return;
     setReset(true);
+    lock.current = true;
     lastPos.current = getInitPos();
   });
 
@@ -34,6 +36,7 @@ export const useInitialPosition = (
     if (!reset) return;
     const p = getInitPos();
     bodyApi.position.set(p.x, p.y, p.z);
+    lock.current = false;
     setReset(false);
   }, [reset, initPos]);
 };

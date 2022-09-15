@@ -1,8 +1,8 @@
 {
-  "id": "beed4009-baa2-4ffa-aec4-225cd36e1fbf",
+  "id": "f3c1ae49-de5e-4702-a80b-b3f5124c84a9",
   "name": "Goose",
-  "predecessor": "bdbecfdc-c34a-4d9a-ba34-9531f17045e3",
-  "purpose": "exist. create Goose. give the goose some id, beliefs, and bug fixes.",
+  "predecessor": "beed4009-baa2-4ffa-aec4-225cd36e1fbf",
+  "purpose": "exist. create Goose. give the goose some id, beliefs, and bug fixes. init pos fixes.",
   "schema": [
     {
       "name": "position",
