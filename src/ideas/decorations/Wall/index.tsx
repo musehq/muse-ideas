@@ -67,7 +67,7 @@ function UnSuspensedTextureWall(props: WallProps) {
 
   return (
     <group rotation={rot}>
-      <animated.mesh scale-x={w} scale-y={h}>
+      <animated.mesh scale-x={w} scale-y={h} scale-z={10}>
         <boxGeometry args={[1, 1, 0.1]} />
         <meshStandardMaterial map={tex} />
       </animated.mesh>
