@@ -1,8 +1,8 @@
 {
-    "predecessor": "1b7e781d-5cfe-46ff-89b2-805f26ece83c",
-    "id": "db54f8cf-55bc-4788-840a-1994e3e6b7a5",
+    "id": "07354d78-1833-4a3a-9c54-58ad3ff3c2cd",
+    "predecessor": "4383294b-2b44-4fed-a0b6-3e591c179904",
     "name": "Proximity Link",
-    "purpose": "exist. Links end visitors when they walk in given radius",
+    "purpose": "exist. Links end visitors when they walk in given radius. fixes.",
     "schema": [
       {
         "name": "media",
