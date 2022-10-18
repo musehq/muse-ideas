@@ -78,12 +78,7 @@ export default function ProximityLink(props: ProximityLinkProps) {
     <group name="proximity-media" ref={ref} {...rest}>
       <animated.group>
         {IS_IMAGE && (
-          <Image
-            src={media}
-            framed={framed}
-            frameMaterial={frameMat}
-            transparent={modUrl.endsWith(".png") || modUrl.endsWith(".PNG")}
-          />
+          <Image src={media} framed={framed} frameMaterial={frameMat} />
         )}
       </animated.group>
     </group>
