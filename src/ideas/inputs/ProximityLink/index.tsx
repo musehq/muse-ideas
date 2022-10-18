@@ -32,6 +32,7 @@ export default function ProximityLink(props: ProximityLinkProps) {
   const [visible, setVisible] = useState(true);
   const { scale } = useSpring({ scale: visible ? 1 : 0 });
   const dummy = useMemo(() => new Vector3(), []);
+  const [enterToggle, setEnterToggle] = useState(true);
 
   const modUrl = media.toLowerCase();
   const IS_IMAGE =
@@ -51,10 +52,18 @@ export default function ProximityLink(props: ProximityLinkProps) {
 
     ref.current.getWorldPosition(dummy);
     const dist = Math.max(dummy.distanceTo(camera.position), 0.25);
-    console.log(active);
-    if (dist < RADIUS && active) {
-      console.log(active);
-      window.open(url, "_self");
+
+    if (dist <= RADIUS && active && enterToggle) {
+      console.log("______ NEW ENTRY ______");
+      console.log("Dist: " + dist + "  Radius: " + RADIUS);
+      console.log("Set toggle to false");
+      setEnterToggle(false);
+
+      window.alert("OPEN URL");
+      // window.open(url, "_self");
+    }
+    if (dist >= RADIUS) {
+      setEnterToggle(true);
     }
   });
 
