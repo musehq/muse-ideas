@@ -29,8 +29,6 @@ export default function ProximityLink(props: ProximityLinkProps) {
 
   const ref = useRef<Group>(null);
   const circleRef = useRef<Mesh>(null);
-  const [visible, setVisible] = useState(true);
-  const { scale } = useSpring({ scale: visible ? 1 : 0 });
   const dummy = useMemo(() => new Vector3(), []);
   const [enterToggle, setEnterToggle] = useState(true);
 
