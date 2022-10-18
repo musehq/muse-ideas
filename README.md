@@ -14,12 +14,21 @@ Join our discord to get in touch https://discord.gg/ADJSj9xtDJ
 
 ## setup
 
+
+#### \> run it locally
+
 1. Run `yarn install` to locally install the packages
-2. Find the folder by which to organize your idea inside of `src/ideas`. Feel free to make a new folder if none of the types seem to fit what you want to make. Make sure to copy the casing.
-3. Inside that folder, create an `idea.json` file and an `index.tsx` file.
-4. If you're on mac or linux, run `yarn sync`. If you're on windows, create the corresponding file in `src/pages` to serve your idea.
-5. Run `yarn dev` to start a local development server, likely hosted on `localhost:3000`
-6. Visit `localhost:3000/type/IdeaName` to access your idea. For example, to develop the Proximity Media idea located at `src/ideas/decorations/ProximityMedia`, go to `localhost:3000/decorations/ProximityMedia`
+2. run `yarn dev` to start the local dev server
+3. Visit `localhost:3000/type/IdeaName` to access your idea. For example, to develop the Proximity Picture idea located at `src/ideas/decorations/ProximityPicture`, go to `localhost:3000/decorations/ProximityPicture`
+
+#### \> create your own idea (mac / linux)
+
+1. If you're on mac or linux, you can run `yarn generate YourIdeaName` to create all the files. It will automatically organize itself under the `chaos` folder, but feel free to re-organize.
+
+#### \> create your own idea (windows)
+
+1. Find the folder by which to organize your idea inside of `src/ideas`. Feel free to make a new folder if none of the types seem to fit what you want to make. Make sure to copy the casing.
+2. Inside that folder, create an `idea.json` file and an `index.tsx` file. You can copy the contents of `scripts/TEMPLATE_IDEA.txt` for the `idea.json` and `TEMPLATE_INDEX.txt` form the `index.tsx`
 
 ## the _index.tsx_ file
 
@@ -43,7 +52,6 @@ This file stores the metadata as JSON for the idea you want to upload. We can he
 - position
 - rotation
 - scale
-- media (both image and video) (resource url)
 - image (resource url)
 - video (resource url)
 - number, float, integer (as of right now no difference in builder tools)
@@ -55,15 +63,15 @@ This file stores the metadata as JSON for the idea you want to upload. We can he
 - color
 - boolean
 
-#### \> provided npm dependencies
-- react
-- @react-three/fiber
-- three
-- @react-three/drei
-- @react-three/flex
-- @react-three/cannon
-- spacesvr
-- @react-spring/three
+#### \> provided npm dependencies (click to learn more)
+- [react](https://reactjs.org/docs/hello-world.html)
+- [three.js](https://threejs.org/examples/#webgl_animation_keyframes)
+- [@react-three/fiber](https://docs.pmnd.rs/react-three-fiber/getting-started/introduction)
+- [@react-three/drei](https://github.com/pmndrs/drei#readme)
+- [@react-three/flex](https://github.com/pmndrs/react-three-flex#readme)
+- [@react-three/cannon](https://github.com/pmndrs/use-cannon/tree/master/packages/react-three-cannon)
+- [spacesvr](https://github.com/musehq/spacesvr#readme)
+- [@react-spring/three](https://react-spring.dev/basics#basics)
 
 ## gotchas
 

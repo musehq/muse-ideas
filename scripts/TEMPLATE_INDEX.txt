@@ -1,0 +1,21 @@
+import { Spinning } from "spacesvr";
+import { GroupProps } from "@react-three/fiber";
+
+type IDEA_NAMEProps = {
+  color?: string;
+} & GroupProps;
+
+export default function IDEA_NAME(props: IDEA_NAMEProps) {
+  const { color = "white", ...rest } = props;
+
+  return (
+    <group name="IDEA_NAME" {...rest}>
+      <Spinning>
+        <mesh>
+          <boxBufferGeometry args={[1, 1, 1]} />
+          <meshStandardMaterial color={color} />
+        </mesh>
+      </Spinning>
+    </group>
+  );
+}

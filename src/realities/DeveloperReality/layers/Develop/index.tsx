@@ -6,9 +6,9 @@ import {
   useEffect,
   useState,
 } from "react";
-import { Perf } from "r3f-perf";
 import Wings from "realities/DeveloperReality/tools/Wings";
 import useConfig from "./logic/config";
+import { Leva } from "leva";
 
 export type Type = {
   name: string;
@@ -55,7 +55,7 @@ export default function Develop(props: DevelopProps) {
       );
   }, []);
 
-  const IS_LAND = window.location.pathname.includes("land");
+  const IS_LAND = window.location.pathname.includes("/lands/");
   const IS_DEV_ENV = process.env.NODE_ENV === "development";
 
   const config = useConfig(manifest);
@@ -63,23 +63,25 @@ export default function Develop(props: DevelopProps) {
   const value = { config };
 
   return (
-    <StandardReality
-      environmentProps={{
-        canvasProps: { camera: { far: 300 } },
-        dev: IS_DEV_ENV,
-      }}
-      playerProps={{
-        pos: IS_LAND ? [0, 1, 0] : [0, 1, 4],
-        controls: { disableGyro: true },
-      }}
-      disableGround={IS_LAND}
-    >
-      <DevelopContext.Provider value={value}>
-        <Perf position="top-left" />
-        <Wings />
-        <Camera />
-        {children}
-      </DevelopContext.Provider>
-    </StandardReality>
+    <>
+      <Leva />
+      <StandardReality
+        environmentProps={{
+          canvasProps: { camera: { far: 300 } },
+          dev: IS_DEV_ENV,
+        }}
+        playerProps={{
+          pos: IS_LAND ? [0, 1, 0] : [0, 1, 4],
+          controls: { disableGyro: true },
+        }}
+        disableGround={IS_LAND}
+      >
+        <DevelopContext.Provider value={value}>
+          <Wings />
+          <Camera />
+          {children}
+        </DevelopContext.Provider>
+      </StandardReality>
+    </>
   );
 }

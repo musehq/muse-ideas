@@ -5,6 +5,7 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
+    "generate": "sh scripts/generate.sh",
     "sync": "sh scripts/sync-pages.sh",
     "clean": "sh scripts/clean-builds.sh",
     "lint-staged": "lint-staged",
@@ -34,7 +35,7 @@
     "seedrandom": "3.0.5",
     "shopify-buy": "^2.12.0",
     "simplex-noise": "^3.0.0",
-    "spacesvr": "2.0.1",
+    "spacesvr": "2.3.0",
     "three": "0.139.2",
     "three-mesh-bvh": "^0.5.10",
     "web3": "^1.7.1"

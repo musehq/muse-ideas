@@ -1,0 +1,52 @@
+{
+  "id": "28ebb02d-4eaa-49f7-b34c-e2fb6c7cd456",
+  "name": "Slot Machine",
+  "predecessor": "4bee8d89-9bb5-4238-8c83-95b098f88457",
+  "purpose": "exist. Install a slot machine in your world to have some fun.",
+  "schema": [
+    {
+      "name": "position",
+      "type": "position"
+    },
+    {
+      "name": "scale",
+      "type": "scale"
+    },
+    {
+      "name": "rotation",
+      "type": "rotation"
+    },
+    {
+      "name": "numOfIcons",
+      "type": "number"
+    },
+    {
+      "name": "playsPerDay",
+      "type": "number"
+    },
+    {
+      "name": "url",
+      "type": "string"
+    },
+    {
+      "name": "pictureA",
+      "type": "image"
+    },
+    {
+      "name": "pictureB",
+      "type": "image"
+    },
+    {
+      "name": "pictureC",
+      "type": "image"
+    },
+    {
+      "name": "pictureD",
+      "type": "image"
+    }
+  ],
+  "npm_dependencies": {
+    "react-spring": "9.1.2"
+  },
+  "data_url": null
+}

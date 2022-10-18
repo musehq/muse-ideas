@@ -1,0 +1,38 @@
+{
+  "id": "e3510371-d952-4003-b8bb-240143949a95",
+  "name": "Fog Machine",
+  "predecessor": "6f3c92ab-5d1f-4019-84f2-07632045d1ed",
+  "purpose": "exist. create Fog Machine. tweak audio settings.",
+  "schema": [
+    {
+      "name": "position",
+      "type": "position"
+    },
+    {
+      "name": "rotation",
+      "type": "rotation"
+    },
+    {
+      "name": "scale",
+      "type": "scale"
+    },
+    {
+      "name": "enabled",
+      "type": "boolean"
+    },
+    {
+      "name": "color",
+      "type": "color"
+    },
+    {
+      "name": "near",
+      "type": "number"
+    },
+    {
+      "name": "far",
+      "type": "number"
+    }
+  ],
+  "npm_dependencies": {},
+  "data_url": null
+}

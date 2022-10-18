@@ -1,0 +1,23 @@
+{
+  "name": "IDEA_NAME",
+  "purpose": "exist. create IDEA_NAME.",
+  "schema": [
+    {
+      "name": "position",
+      "type": "position"
+    },
+    {
+      "name": "rotation",
+      "type": "rotation"
+    },
+    {
+      "name": "scale",
+      "type": "scale"
+    },
+    {
+      "name": "color",
+      "type": "color"
+    }
+  ],
+  "npm_dependencies": {}
+}
