@@ -268,6 +268,13 @@
   dependencies:
     regenerator-runtime "^0.13.4"
 
+"@babel/runtime@^7.12.5":
+  version "7.20.6"
+  resolved "https://registry.yarnpkg.com/@babel/runtime/-/runtime-7.20.6.tgz#facf4879bfed9b5326326273a64220f099b0fce3"
+  integrity sha512-Q+8MqP7TiHMWzSfwiJwXCjyf4GYA4Dgw3emg/7xmwsdLJOZUp+nMqcOwOzzYheuM1rhDu8FSj2l0aoMygEuXuA==
+  dependencies:
+    regenerator-runtime "^0.13.11"
+
 "@babel/runtime@^7.5.5":
   version "7.17.2"
   resolved "https://registry.yarnpkg.com/@babel/runtime/-/runtime-7.17.2.tgz#66f68591605e59da47523c631416b18508779941"
@@ -1343,13 +1350,13 @@
     "@react-spring/shared" "~9.1.2"
     "@react-spring/types" "~9.1.2"
 
-"@react-three/cannon@^6.3.0":
-  version "6.3.0"
-  resolved "https://registry.yarnpkg.com/@react-three/cannon/-/cannon-6.3.0.tgz#7773270bcdb797a4287b7d389159eb9433dc3bec"
-  integrity sha512-ZLX/LtJRRi2J/jFcZsZ19q6lrTBQxm5OtY0D9GOdV1vNiwyM9ACRoaMXMHN0zUdaUn7Psls9w5n1VfF5FY4C7Q==
+"@react-three/cannon@6.4.0":
+  version "6.4.0"
+  resolved "https://registry.yarnpkg.com/@react-three/cannon/-/cannon-6.4.0.tgz#89aee95752c0f02caac04fa97675ccec59bd9b61"
+  integrity sha512-hrT7ploQOCKyP/vVSm9RWN2r2WPxjpTHDNnkxzwa/doK3IyREJ+40Ghor7E7pf76sjRgJFBrypVUSpKDcescTA==
   dependencies:
     "@pmndrs/cannon-worker-api" "^2.1.0"
-    cannon-es "^0.19.0"
+    cannon-es "^0.20.0"
     cannon-es-debugger "^1.0.0"
 
 "@react-three/drei@9.11.3":
@@ -2417,10 +2424,10 @@ cannon-es-debugger@^1.0.0:
   resolved "https://registry.yarnpkg.com/cannon-es-debugger/-/cannon-es-debugger-1.0.0.tgz#28c6679b30dcf608e978225239f447a8fe55ccb4"
   integrity sha512-sE9lDOBAYFKlh+0w+cvWKwUhJef8HYnUSVPWPL0jD15MAuVRQKno4QYZSGxgOoJkMR3mQqxL4bxys2b3RSWH8g==
 
-cannon-es@^0.19.0:
-  version "0.19.0"
-  resolved "https://registry.yarnpkg.com/cannon-es/-/cannon-es-0.19.0.tgz#f62fa04097e375877db8f3895f27bb6d499395c0"
-  integrity sha512-fu9UXrjFmAQXq3JyBVPbtyc53suX+QHzikZEJykxroVNnIx1xHq0jZenK8qwhdwbBAtDL9n/47TyPELuSQwZuA==
+cannon-es@^0.20.0:
+  version "0.20.0"
+  resolved "https://registry.yarnpkg.com/cannon-es/-/cannon-es-0.20.0.tgz#bf2f62a674701f37e3d861c90668a32d4d32f082"
+  integrity sha512-eZhWTZIkFOnMAJOgfXJa9+b3kVlvG+FX4mdkpePev/w/rP5V8NRquGyEozcjPfEoXUlb+p7d9SUcmDSn14prOA==
 
 caseless@~0.12.0:
   version "0.12.0"
@@ -5869,6 +5876,13 @@ react-dropzone@^12.0.0:
     file-selector "^0.5.0"
     prop-types "^15.8.1"
 
+react-error-boundary@^3.1.4:
+  version "3.1.4"
+  resolved "https://registry.yarnpkg.com/react-error-boundary/-/react-error-boundary-3.1.4.tgz#255db92b23197108757a888b01e5b729919abde0"
+  integrity sha512-uM9uPzZJTF6wRQORmSrvOIgt4lJ9MC1sNgEOj2XGsDTRE4kmpWxg7ENK9EWNKJRMAOY9z0MuF4yIfl6gp4sotA==
+  dependencies:
+    "@babel/runtime" "^7.12.5"
+
 react-is@^16.13.1, react-is@^16.7.0, react-is@^16.8.1:
   version "16.13.1"
   resolved "https://registry.yarnpkg.com/react-is/-/react-is-16.13.1.tgz#789729a4dc36de2999dc156dd6c1d9c18cea56a4"
@@ -5954,6 +5968,11 @@ readable-stream@~1.0.15:
     inherits "~2.0.1"
     isarray "0.0.1"
     string_decoder "~0.10.x"
+
+regenerator-runtime@^0.13.11:
+  version "0.13.11"
+  resolved "https://registry.yarnpkg.com/regenerator-runtime/-/regenerator-runtime-0.13.11.tgz#f6dca3e7ceec20590d07ada785636a90cdca17f9"
+  integrity sha512-kY1AZVr2Ra+t+piVaJ4gxaFaReZVH40AKNo7UCX6W+dEwBo/2oZJzqfuN1qLq1oL45o56cPaTXELwrTh8Fpggg==
 
 regenerator-runtime@^0.13.4:
   version "0.13.9"
@@ -6379,17 +6398,17 @@ source-map@^0.5.0, source-map@^0.5.7:
   resolved "https://registry.yarnpkg.com/source-map/-/source-map-0.5.7.tgz#8a039d2d1021d22d1ea14c80d8ea468ba2ef3fcc"
   integrity sha1-igOdLRAh0i0eoUyA2OpGi6LvP8w=
 
-spacesvr@2.3.0:
-  version "2.3.0"
-  resolved "https://registry.yarnpkg.com/spacesvr/-/spacesvr-2.3.0.tgz#d5c9556abe7c7a880f4f793b1e34e99d652013dd"
-  integrity sha512-ZVHbrGlhfOh2laj7z6Teub5N2fHjsxPCMCWTm3cPVOg4cfhorjfDiX1GcMAtGOJjHeanUnH2njewaX6BVM+ZGA==
+spacesvr@2.7.1:
+  version "2.7.1"
+  resolved "https://registry.yarnpkg.com/spacesvr/-/spacesvr-2.7.1.tgz#eff49567ec2ba7b1baca855bf0746b0feeac4e24"
+  integrity sha512-3KAatBIW+hHAt53tdUL50CG9UDatcrxKIaMSpj1Xs5EOvbr54dHPTUxgcuqI3gIU5Rz4MlltdmQw9XK/kAkXng==
   dependencies:
     "@emotion/react" "^11.4.0"
     "@emotion/styled" "^11.3.0"
     "@geckos.io/snapshot-interpolation" "^1.1.0"
     "@juggle/resize-observer" "^3.2.0"
     "@react-spring/three" "^9.4.5"
-    "@react-three/cannon" "^6.3.0"
+    "@react-three/cannon" "6.4.0"
     "@react-three/drei" "9.11.3"
     "@react-three/fiber" "^8.0.22"
     "@react-three/xr" "^4.0.1"
@@ -6398,6 +6417,7 @@ spacesvr@2.3.0:
     node-fetch "^2.6.1"
     peerjs "^1.4.6"
     react-device-detect "^1.13.1"
+    react-error-boundary "^3.1.4"
 
 split-on-first@^1.0.0:
   version "1.1.0"
