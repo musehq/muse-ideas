@@ -4,12 +4,24 @@ import React from "react";
 import MagicText from "./ideas/MagicText";
 import { KORN_FONT } from "./logic/constants";
 import { animated, config, useSpring } from "@react-spring/three";
-import { Button, TextInput, useKeypress, usePlayer } from "spacesvr";
+import {
+  Button,
+  TextInput,
+  useKeypress,
+  usePlayer,
+  Collidable,
+} from "spacesvr";
 
-type GhostDoorProps = { opacity?: number } & GroupProps;
+type GhostDoorProps = { opacity?: number; password?: string } & GroupProps;
+
+/*
+1 - question
+2 - wrong
+3 - right
+*/
 
 export default function GhostDoor(props: GhostDoorProps) {
-  const { opacity = 0.6, ...restProps } = props;
+  const { opacity = 0.6, password = "test", ...restProps } = props;
   const [stage, setStage] = useState(1);
 
   const player = usePlayer();
@@ -43,20 +55,18 @@ export default function GhostDoor(props: GhostDoorProps) {
     (stage === 2 && why.length > 0) ||
     (stage === 4 && email.length > 0);
 
-  const [visible, setVisible] = useState(false);
+  const [collidable, setCollidable] = useState(true);
 
   const INPUTS_ENABLED = true;
-  const { posY, scale } = useSpring({
+  const { posY, scale, posX } = useSpring({
     posY: INPUTS_ENABLED ? 0.6 : -0.8,
     scale: INPUTS_ENABLED ? 1 : 0,
+    posX: stage === 3 ? 1.1 : 0,
     ...config.gentle,
   });
 
   const doorMesh = React.useRef();
-  useFrame(({ clock }) => {
-    // console.log("Hey, I'm executing every frame!")
-    // doorMesh.current.rotation.z = clock.getElapsedTime();
-  });
+
   return (
     <group name="door">
       <group position-y={1} position-z={1}>
@@ -84,7 +94,9 @@ export default function GhostDoor(props: GhostDoorProps) {
                 scale={0.8}
                 font={KORN_FONT}
                 onClick={() =>
-                  setStage(checkPassword({ userPassword: inValue }))
+                  setStage(
+                    checkPassword({ userPassword: inValue, password: password })
+                  )
                 }
               >
                 next
@@ -93,11 +105,14 @@ export default function GhostDoor(props: GhostDoorProps) {
           </group>
         </animated.group>
       </group>
-
-      <mesh rotation-x={-Math.PI / 2} ref={doorMesh}>
-        <boxBufferGeometry args={[1, 0.1, 5]} />
-        <meshStandardMaterial color="white" opacity={opacity} />
-      </mesh>
+      <Collidable enabled={stage === 3 ? false : true}>
+        <animated.group position-x={posX}>
+          <mesh rotation-x={-Math.PI / 2} ref={doorMesh}>
+            <boxBufferGeometry args={[1, 0.1, 5]} />
+            <meshStandardMaterial color="white" opacity={opacity} />
+          </mesh>
+        </animated.group>
+      </Collidable>
     </group>
   );
 }
@@ -105,12 +120,13 @@ export default function GhostDoor(props: GhostDoorProps) {
 // password checker
 type CheckPasswordProps = {
   userPassword: string;
+  password: string;
 };
 
 function checkPassword(props: CheckPasswordProps) {
-  const { userPassword } = props;
+  const { userPassword, password } = props;
 
-  if ("test" === userPassword) {
+  if (password === userPassword) {
     console.log("correct");
     return 3;
   }
