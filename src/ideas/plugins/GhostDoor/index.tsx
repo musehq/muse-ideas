@@ -60,7 +60,7 @@ export default function GhostDoor(props: GhostDoorProps) {
   return (
     <group name="door">
       <group position-y={1} position-z={1}>
-        <MagicText stage={1} visible />
+        <MagicText stage={stage} visible />
         <animated.group position-y={posY} scale={scale}>
           <group position-y={-0.2}>
             <TextInput
@@ -83,7 +83,9 @@ export default function GhostDoor(props: GhostDoorProps) {
                 width={0.4}
                 scale={0.8}
                 font={KORN_FONT}
-                onClick={() => setStage(stage + 1)}
+                onClick={() =>
+                  setStage(checkPassword({ userPassword: inValue }))
+                }
               >
                 next
               </Button>
@@ -98,4 +100,20 @@ export default function GhostDoor(props: GhostDoorProps) {
       </mesh>
     </group>
   );
+}
+
+// password checker
+type CheckPasswordProps = {
+  userPassword: string;
+};
+
+function checkPassword(props: CheckPasswordProps) {
+  const { userPassword } = props;
+
+  if ("test" === userPassword) {
+    console.log("correct");
+    return 3;
+  }
+  console.log("wrong");
+  return 2;
 }

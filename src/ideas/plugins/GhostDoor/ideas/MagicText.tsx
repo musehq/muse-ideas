@@ -27,7 +27,7 @@ export default function MagicText(props: MagicText) {
     : stage === 1
     ? "What is the password?"
     : stage === 2
-    ? "You got it wrong"
+    ? "You got it wrong, try again"
     : stage === 3
     ? "You got it right"
     : stage === 4
