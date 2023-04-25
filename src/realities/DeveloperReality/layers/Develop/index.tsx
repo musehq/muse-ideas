@@ -7,6 +7,7 @@ import {
   useState,
 } from "react";
 import Wings from "realities/DeveloperReality/tools/Wings";
+import PhotoTool from "ideas/ghost/PhotoTool";
 import useConfig from "./logic/config";
 import { Leva } from "leva";
 
@@ -79,6 +80,8 @@ export default function Develop(props: DevelopProps) {
         <DevelopContext.Provider value={value}>
           <Wings />
           <Camera />
+          <PhotoTool />
+
           {children}
         </DevelopContext.Provider>
       </StandardReality>
