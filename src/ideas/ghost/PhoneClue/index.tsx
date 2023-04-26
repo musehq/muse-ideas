@@ -2,8 +2,7 @@ import { Suspense, useState } from "react";
 import { GroupProps } from "@react-three/fiber";
 
 import { Model, Interactable, useToolbelt } from "spacesvr";
-import { AudioNoLoop } from "./components/AudioNoLoop";
-import { AudioAnalyser } from "three";
+
 // import Audio from "./components/Audio";
 import { setConstantValue } from "typescript";
 
@@ -21,10 +20,9 @@ export default function PhoneClue(props: SpeakerProps) {
   } = props;
 
   const toolbelt = useToolbelt();
-  const [analyser, setAnalyser] = useState<AudioAnalyser>();
+  const [audioPlaying, setAudioPlaying] = useState(false);
 
-  const [playAudio, setPlayAudio] = useState(false);
-
+  // create instance of audio player
   const a = document.createElement("audio");
   a.src = audioUrl;
   a.autoplay = false;
@@ -38,7 +36,13 @@ export default function PhoneClue(props: SpeakerProps) {
     let i = 0;
     console.log("open clue");
     console.log(toolbelt.tools);
-    a.play();
+    console.log("audio status" + a.paused);
+    if (a.paused && !audioPlaying) {
+      a.play();
+      console.log("play  auido");
+      setAudioPlaying(true);
+    }
+
     window.randomimageshit = testImage;
 
     toolbelt.tools.forEach((tool) => {

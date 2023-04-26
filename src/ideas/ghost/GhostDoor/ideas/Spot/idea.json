@@ -1,0 +1,30 @@
+{
+  "id": "a1d2a0df-9d06-4086-8fe0-a710e5f7c780",
+  "name": "Spot",
+  "predecessor": "4bee8d89-9bb5-4238-8c83-95b098f88457",
+  "purpose": "exist. Make a spot to center user attention.",
+  "schema": [
+    {
+      "name": "position",
+      "type": "position"
+    },
+    {
+      "name": "radius",
+      "type": "number"
+    },
+    {
+      "name": "color",
+      "type": "color"
+    },
+    {
+      "name": "strength",
+      "type": "number"
+    },
+    {
+      "name": "alpha",
+      "type": "number"
+    }
+  ],
+  "npm_dependencies": {},
+  "data_url": null
+}
