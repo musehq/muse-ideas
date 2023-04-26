@@ -1,0 +1,60 @@
+import { Suspense, useState } from "react";
+import { GroupProps } from "@react-three/fiber";
+
+import { Model, Interactable, useToolbelt } from "spacesvr";
+import { AudioAnalyser } from "three";
+import Audio from "./components/Audio";
+import { setConstantValue } from "typescript";
+
+type SpeakerProps = {
+  audioUrl?: string;
+  model?: string;
+  volume?: number;
+} & GroupProps;
+
+export default function Speaker(props: SpeakerProps) {
+  const {
+    model = "https://d1htv66kutdwsl.cloudfront.net/28113aac-1d4d-445b-b60f-8a52506bab98/8f883243-3b23-4efa-99e3-6e764b0b419d.glb",
+    audioUrl = "https://d27rt3a60hh1lx.cloudfront.net/audio/nocopyright-lofi-muse.mp3",
+    ...restProps
+  } = props;
+
+  const toolbelt = useToolbelt();
+  const [analyser, setAnalyser] = useState<AudioAnalyser>();
+  const [playAudio, setPlayAudio] = useState(false);
+
+  const testImage =
+    "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTrPh_Mgk_7KitQLJ0cbmjYFiTdK6962Gz7eAJ3MZWY0g&s";
+  const OpenClue = () => {
+    let i = 0;
+    console.log("open clue");
+    console.log(toolbelt.tools);
+    window.randomimageshit = testImage;
+    setPlayAudio(true);
+    toolbelt.tools.forEach((tool) => {
+      console.log(tool);
+      if (tool.name === "ClueTool") {
+        toolbelt.setActiveIndex(i);
+      }
+      i += 1;
+    });
+  };
+
+  return (
+    <group name="speaker" {...restProps}>
+      {playAudio && (
+        <Audio
+          url={audioUrl}
+          radius={6}
+          volume={3}
+          setAudioAnalyser={setAnalyser}
+        />
+      )}
+      <Suspense fallback={null}>
+        <Interactable onClick={() => OpenClue()}>
+          <Model src={model} scale={0.1} />
+        </Interactable>
+      </Suspense>
+    </group>
+  );
+}
