@@ -1,16 +1,16 @@
 import { GroupProps } from "@react-three/fiber";
 import { DoubleSide, Mesh, Vector3 } from "three";
-import { useRef, useState, useContext } from "react";
+import React, { useRef, useState, useContext } from "react";
 import { useLimitedFrame } from "spacesvr";
 import { useSpot } from "./logic/spot";
 import { useCircleMat } from "./logic/circleMat";
-import { VisibleContext } from "../..";
 
 type SpotProps = {
   radius?: number;
   strength?: number;
   color?: string;
   alpha?: number;
+  setVisible: React.Dispatch<React.SetStateAction<boolean>>;
 } & GroupProps;
 
 export default function Spot(props: SpotProps) {
@@ -19,6 +19,7 @@ export default function Spot(props: SpotProps) {
     strength = 1,
     color = "white",
     alpha = 0.3,
+    setVisible,
     ...rest
   } = props;
 
@@ -30,7 +31,6 @@ export default function Spot(props: SpotProps) {
     mesh.current.getWorldPosition(worldPos);
   });
 
-  const { visible, setVisible } = useContext(VisibleContext);
   useSpot(worldPos, radius, strength, {
     onEnter: () => setVisible(true),
     onLeave: () => setVisible(false),

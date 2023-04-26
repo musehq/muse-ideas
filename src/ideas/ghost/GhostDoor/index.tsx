@@ -1,28 +1,22 @@
-import { useFrame, GroupProps } from "@react-three/fiber";
-import { useState, createContext, useContext } from "react";
+import { GroupProps } from "@react-three/fiber";
+import { useState } from "react";
 import React from "react";
 import MagicText from "./ideas/MagicText";
 import { KORN_FONT } from "./logic/constants";
 import { animated, config, useSpring } from "@react-spring/three";
-// import { useSpot } from "./ideas/Spot/logic/spot";
+import { Model } from "spacesvr";
 import Spot from "./ideas/Spot";
 
-import {
-  Button,
-  TextInput,
-  useKeypress,
-  usePlayer,
-  Collidable,
-} from "spacesvr";
+import { Button, TextInput, Collidable } from "spacesvr";
 
 type GhostDoorProps = { opacity?: number; password?: string } & GroupProps;
-// const SPOT = new Vector3(0, 0, 1.7);
+
 /*
 1 - question
 2 - wrong
 3 - right
 */
-export const VisibleContext = createContext();
+// export const VisibleContext = createContext<GhostDoorState>({} as GhostDoorState);
 
 export default function GhostDoor(props: GhostDoorProps) {
   const { opacity = 0.6, password = "test", ...restProps } = props;
@@ -35,14 +29,7 @@ export default function GhostDoor(props: GhostDoorProps) {
 
   const inValue =
     stage === 1 ? who : stage === 2 ? why : stage === 4 ? email : "";
-  const placeholder =
-    stage === 1
-      ? "Type a name"
-      : stage === 2
-      ? "Type a message"
-      : stage === 4
-      ? "Type your email"
-      : "";
+
   const inSetter =
     stage === 1
       ? setWho
@@ -59,17 +46,19 @@ export default function GhostDoor(props: GhostDoorProps) {
 
   const [visible, setVisible] = useState(false);
 
-  // useSpot(SPOT,2,1, {
-  //   onEnter: () => setVisible(true),
-  //   onLeave: () => setVisible(false),
-  // });
-  const INPUTS_ENABLED = visible;
   const { posY, scale, posX } = useSpring({
-    posY: INPUTS_ENABLED ? 0.6 : -0.8,
-    scale: INPUTS_ENABLED ? 1 : 0,
+    posY: visible ? 0.6 : -0.8,
+    scale: visible ? 1 : 0,
     posX: stage === 3 ? 1.1 : 0,
     ...config.gentle,
   });
+
+  const checkPassword = (userPassword: string, password: string) => {
+    if (password === userPassword) {
+      return 3;
+    }
+    return 2;
+  };
 
   return (
     <group name="password-door" {...restProps}>
@@ -87,7 +76,7 @@ export default function GhostDoor(props: GhostDoorProps) {
               value={inValue}
               onChange={inSetter}
               rotation-x={-0.1}
-              placeholder={placeholder}
+              placeholder={"type a password"}
             />
             {BUTTON_ENABLED && (
               <Button
@@ -97,13 +86,9 @@ export default function GhostDoor(props: GhostDoorProps) {
                 width={0.4}
                 scale={0.8}
                 font={KORN_FONT}
-                onClick={() =>
-                  setStage(
-                    checkPassword({ userPassword: inValue, password: password })
-                  )
-                }
+                onClick={() => setStage(checkPassword(inValue, password))}
               >
-                next
+                submit
               </Button>
             )}
           </group>
@@ -111,34 +96,19 @@ export default function GhostDoor(props: GhostDoorProps) {
       </group>
       <Collidable enabled={stage === 3 ? false : true}>
         <animated.group position-x={posX} name="door">
-          <mesh rotation-x={-Math.PI / 2}>
-            <boxBufferGeometry args={[1, 0.1, 5]} />
-            <meshStandardMaterial color="white" opacity={opacity} />
-          </mesh>
+          <Model
+            scale={2}
+            normalize
+            src={
+              "https://d1htv66kutdwsl.cloudfront.net/bc1f22e5-d9c6-4708-800d-cd31a17b17a9/51135c50-b589-4ba1-afd4-127f656e7179.glb"
+            }
+          />
         </animated.group>
       </Collidable>
-      <VisibleContext.Provider value={{ visible, setVisible }}>
-        <group position={[0, 0.1, 1.8]}>
-          <Spot strength={1} color="red" />
-        </group>
-      </VisibleContext.Provider>
+
+      <group position={[0, 0.1, 1.8]}>
+        <Spot setVisible={setVisible} strength={1} color="red" />
+      </group>
     </group>
   );
-}
-
-// password checker
-type CheckPasswordProps = {
-  userPassword: string;
-  password: string;
-};
-
-function checkPassword(props: CheckPasswordProps) {
-  const { userPassword, password } = props;
-
-  if (password === userPassword) {
-    console.log("correct");
-    return 3;
-  }
-  console.log("wrong");
-  return 2;
 }
