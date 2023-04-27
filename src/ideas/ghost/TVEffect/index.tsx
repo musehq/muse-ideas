@@ -1,12 +1,9 @@
-import { Suspense, useState } from "react";
+import { Suspense, useRef } from "react";
 import { GroupProps } from "@react-three/fiber";
-import { findScreenMesh } from "./utils/mesh";
-
-import { Model, Interactable, useToolbelt, VisualEffect } from "spacesvr";
-import Bloom from "./components/Bloom";
+import { findColliderMeshes } from "./utils/mesh";
+import { Model } from "spacesvr";
+import { Group } from "three";
 import { TV } from "./models/TV";
-// import Audio from "./components/Audio";
-import { setConstantValue } from "typescript";
 
 type TVEffectProps = {
   model?: string;
@@ -14,14 +11,14 @@ type TVEffectProps = {
 
 export default function TVEffect(props: TVEffectProps) {
   const {
-    model = "https://d1htv66kutdwsl.cloudfront.net/7efb17bd-9d7c-4b64-8edc-c73fe1179b3f/3d393953-03df-4ccb-97e7-01f37b173575.glb",
+    model = "https://d1htv66kutdwsl.cloudfront.net/e560b133-3173-4656-9b0b-7879fc3c4025/e32d759b-9ccb-400e-8c3a-c76b54085a09.glb",
     ...restProps
   } = props;
 
   return (
     <group name="tveffect" {...restProps}>
       <Suspense fallback={null}>
-        <TV scale={10} position={[0, 0, 0]} />
+        <TV scale={0.02} position-y={1} />
       </Suspense>
     </group>
   );

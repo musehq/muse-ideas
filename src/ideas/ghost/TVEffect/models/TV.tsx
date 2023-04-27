@@ -9,6 +9,7 @@ import { useGLTF } from "@react-three/drei";
 import { GLTF } from "three-stdlib";
 import { useFrame } from "@react-three/fiber";
 import { useLimiter, useModel } from "spacesvr";
+import { useDistortMat } from "../logic/distorMat";
 
 type GLTFResult = GLTF & {
   nodes: {
@@ -35,28 +36,20 @@ type GLTFResult = GLTF & {
 type ModelProps = JSX.IntrinsicElements["group"];
 
 const fileURL =
-  "https://d1htv66kutdwsl.cloudfront.net/a58e6db2-9ab4-418a-8298-fa5f55d90662/09c17d71-652e-473c-966c-3927fb011bcb.glb";
+  "https://d1htv66kutdwsl.cloudfront.net/284a7d50-b70f-4afe-8642-f56d62c2c984/8025c333-33ac-41b7-916e-8a83e954be61.glb";
 
 export function TV(props: ModelProps) {
   const { nodes, materials } = useModel(fileURL) as GLTFResult;
+  const distortMat = useDistortMat(0.5);
   return (
     <group {...props} dispose={null}>
-      <group position={[10.53, 113.92, -83.61]}>
-        <mesh
-          geometry={nodes.screen.geometry}
-          material={nodes.screen.material}
-        />
+      <group position={[0, 0, 49.13]}>
+        <mesh geometry={nodes.screen.geometry} material={distortMat} />
         <mesh geometry={nodes["TV-Mat"].geometry} material={materials.TVMat1} />
         <mesh
           geometry={nodes["TV-Mat2"].geometry}
           material={materials.TVMat2}
         />
-      </group>
-      <group position={[3.54, 82.66, -27.28]}>
-        <mesh geometry={nodes["NEs-Mat"].geometry} material={materials.Mat} />
-        <mesh geometry={nodes["NEs-Mat1"].geometry} material={materials.Mat1} />
-        <mesh geometry={nodes["NEs-Mat2"].geometry} material={materials.Mat2} />
-        {/* <mesh geometry={nodes['NEs-Mat3'].geometry} material={materials.Mat3} /> */}
       </group>
     </group>
   );

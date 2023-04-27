@@ -9,16 +9,10 @@ export function Model(props) {
   const { nodes, materials } = useGLTF('/tvsAREBS.glb')
   return (
     <group {...props} dispose={null}>
-      <group position={[10.53, 113.92, -83.61]}>
+      <group position={[0, 0, 49.13]}>
         <mesh geometry={nodes.screen.geometry} material={nodes.screen.material} />
         <mesh geometry={nodes['TV-Mat'].geometry} material={materials.TVMat1} />
         <mesh geometry={nodes['TV-Mat2'].geometry} material={materials.TVMat2} />
-      </group>
-      <group position={[3.54, 82.66, -27.28]}>
-        <mesh geometry={nodes['NEs-Mat'].geometry} material={materials.Mat} />
-        <mesh geometry={nodes['NEs-Mat1'].geometry} material={materials.Mat1} />
-        <mesh geometry={nodes['NEs-Mat2'].geometry} material={materials.Mat2} />
-        <mesh geometry={nodes['NEs-Mat3'].geometry} material={materials.Mat3} />
       </group>
     </group>
   )
