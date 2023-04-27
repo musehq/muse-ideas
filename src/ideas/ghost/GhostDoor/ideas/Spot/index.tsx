@@ -4,13 +4,12 @@ import React, { useRef, useState, useContext } from "react";
 import { useLimitedFrame } from "spacesvr";
 import { useSpot } from "./logic/spot";
 import { useCircleMat } from "./logic/circleMat";
-
+import { useGhostDoor } from "../..";
 type SpotProps = {
   radius?: number;
   strength?: number;
   color?: string;
   alpha?: number;
-  setVisible: React.Dispatch<React.SetStateAction<boolean>>;
 } & GroupProps;
 
 export default function Spot(props: SpotProps) {
@@ -19,12 +18,12 @@ export default function Spot(props: SpotProps) {
     strength = 1,
     color = "white",
     alpha = 0.3,
-    setVisible,
     ...rest
   } = props;
 
   const mesh = useRef<Mesh>(null);
   const [worldPos] = useState(new Vector3());
+  const { visible, setVisible } = useGhostDoor();
 
   useLimitedFrame(1, () => {
     if (!mesh.current) return;

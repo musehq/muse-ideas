@@ -1,6 +1,6 @@
 import { GroupProps } from "@react-three/fiber";
 import { useState } from "react";
-import React from "react";
+import React, { useContext, createContext } from "react";
 import MagicText from "./ideas/MagicText";
 import { KORN_FONT } from "./logic/constants";
 import { animated, config, useSpring } from "@react-spring/three";
@@ -10,6 +10,7 @@ import Spot from "./ideas/Spot";
 import { Button, TextInput, Collidable } from "spacesvr";
 
 type GhostDoorProps = { opacity?: number; password?: string } & GroupProps;
+type GhostDoorState = { visible?: boolean; setVisible: (b: boolean) => void };
 
 /*
 1 - question
@@ -17,6 +18,8 @@ type GhostDoorProps = { opacity?: number; password?: string } & GroupProps;
 3 - right
 */
 // export const VisibleContext = createContext<GhostDoorState>({} as GhostDoorState);
+const GhostDoorContext = createContext({} as GhostDoorState);
+export const useGhostDoor = () => useContext(GhostDoorContext);
 
 export default function GhostDoor(props: GhostDoorProps) {
   const { opacity = 0.6, password = "test", ...restProps } = props;
@@ -58,6 +61,11 @@ export default function GhostDoor(props: GhostDoorProps) {
       return 3;
     }
     return 2;
+  };
+
+  const value = {
+    visible,
+    setVisible,
   };
 
   return (
@@ -105,10 +113,11 @@ export default function GhostDoor(props: GhostDoorProps) {
           />
         </animated.group>
       </Collidable>
-
-      <group position={[0, 0.1, 1.8]}>
-        <Spot setVisible={setVisible} strength={1} color="red" />
-      </group>
+      <GhostDoorContext.Provider value={value}>
+        <group position={[0, 0.1, 1.8]}>
+          <Spot strength={1} color="red" />
+        </group>
+      </GhostDoorContext.Provider>
     </group>
   );
 }
