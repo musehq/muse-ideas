@@ -1,12 +1,5 @@
-import {
-  Image,
-  useToolbelt,
-  useEnvironment,
-  Interactable,
-  Tool,
-} from "spacesvr";
+import { Image, useToolbelt, useEnvironment, Interactable } from "spacesvr";
 import { Vector3 } from "three";
-import { useCallback } from "react";
 
 const MAP_URL =
   "https://www.wikihow.com/images/thumb/d/db/Get-the-URL-for-Pictures-Step-2-Version-6.jpg/v4-460px-Get-the-URL-for-Pictures-Step-2-Version-6.jpg";
@@ -40,11 +33,7 @@ export default function Clue() {
   };
 
   return (
-    <Interactable
-      onClick={() => OpenClue()}
-      onHovered={() => console.log("Ive been hovered!")}
-      onUnHovered={() => console.log("Ive been unhovered?")}
-    >
+    <Interactable onClick={() => OpenClue()}>
       <Image src={MAP_URL} scale={0.9} />
     </Interactable>
   );
