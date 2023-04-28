@@ -15,7 +15,7 @@ type SpeakerProps = {
 export default function PhoneClue(props: SpeakerProps) {
   const {
     model = "https://d1htv66kutdwsl.cloudfront.net/28113aac-1d4d-445b-b60f-8a52506bab98/8f883243-3b23-4efa-99e3-6e764b0b419d.glb",
-    audioUrl = "https://d27rt3a60hh1lx.cloudfront.net/audio/nocopyright-lofi-muse.mp3",
+    audioUrl = "https://d1htv66kutdwsl.cloudfront.net/c8866ba4-1573-4999-aa5f-b678b31da0bc/18c1d716-c9b1-4b9a-8ae5-ea36b5348c67.mp3",
     ...restProps
   } = props;
 

@@ -1,5 +1,5 @@
 import { Vector2, Vector3 } from "three";
-import { useLimitedFrame, usePlayer } from "spacesvr";
+import { useLimitedFrame, usePlayer, isTyping } from "spacesvr";
 import { useMemo, useRef, useState } from "react";
 
 const getFlatPos = (pos: Vector3): Vector2 => new Vector2(pos.x, pos.z);
@@ -39,7 +39,7 @@ export const useSpot = (
       height < MAX_HEIGHT_OFF
     ) {
       if (dist > INNER_RADIUS && enabled.current) {
-        player.controls.lock();
+        // player.controls.lock();
         delt.x = spotPos.x - playerPos.x;
         delt.y = spotPos.y - playerPos.y;
         delt.normalize();
@@ -51,7 +51,7 @@ export const useSpot = (
         player.position.set(movePos);
       } else {
         enabled.current = false;
-        player.controls.unlock();
+        // player.controls.unlock();
         props?.onEnter();
       }
     } else {

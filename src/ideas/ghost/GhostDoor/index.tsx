@@ -72,35 +72,37 @@ export default function GhostDoor(props: GhostDoorProps) {
     <group name="password-door" {...restProps}>
       <group position-y={1} position-z={1} name="input-field">
         <MagicText stage={stage} visible={visible} />
-        <animated.group position-y={posY} scale={scale}>
-          <group position-y={-0.2}>
-            <TextInput
-              key={`input-${stage}`}
-              position-y={-0.5}
-              fontSize={0.065}
-              width={1}
-              // @ts-ignore
-              font={null}
-              value={inValue}
-              onChange={inSetter}
-              rotation-x={-0.1}
-              placeholder={"type a password"}
-            />
-            {BUTTON_ENABLED && (
-              <Button
-                position-y={-0.625}
-                position-z={0.1}
-                rotation-x={-0.3}
-                width={0.4}
-                scale={0.8}
-                font={KORN_FONT}
-                onClick={() => setStage(checkPassword(inValue, password))}
-              >
-                submit
-              </Button>
-            )}
-          </group>
-        </animated.group>
+        {stage != 3 && (
+          <animated.group position-y={posY} scale={scale}>
+            <group position-y={-0.2}>
+              <TextInput
+                key={`input-${stage}`}
+                position-y={-0.5}
+                fontSize={0.065}
+                width={1}
+                // @ts-ignore
+                font={null}
+                value={inValue}
+                onChange={inSetter}
+                rotation-x={-0.1}
+                placeholder={"type a password"}
+              />
+              {BUTTON_ENABLED && (
+                <Button
+                  position-y={-0.625}
+                  position-z={0.1}
+                  rotation-x={-0.3}
+                  width={0.4}
+                  scale={0.8}
+                  font={KORN_FONT}
+                  onClick={() => setStage(checkPassword(inValue, password))}
+                >
+                  submit
+                </Button>
+              )}
+            </group>
+          </animated.group>
+        )}
       </group>
       <Collidable enabled={stage === 3 ? false : true}>
         <animated.group position-x={posX} name="door">
