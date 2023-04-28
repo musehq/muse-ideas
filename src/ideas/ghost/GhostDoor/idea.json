@@ -1,0 +1,25 @@
+{
+  "predecessor": "c1d1fb2d-bcb1-46a9-97c9-f0ba1bd3d81f",
+  "id": "d351e206-edb0-4278-adc6-5b79d6a91464",
+  "name": "Ghost Door",
+  "purpose": "Password protected door for ghost",
+  "schema": [
+    {
+      "name": "position",
+      "type": "position"
+    },
+    {
+      "name": "rotation",
+      "type": "rotation"
+    },
+    {
+      "name": "scale",
+      "type": "scale"
+    },
+    {
+      "name": "password",
+      "type": "string"
+    }
+  ],
+  "npm_dependencies": {}
+}
