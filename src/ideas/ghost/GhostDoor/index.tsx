@@ -9,7 +9,11 @@ import Spot from "./ideas/Spot";
 
 import { Button, TextInput, Collidable } from "spacesvr";
 
-type GhostDoorProps = { opacity?: number; password?: string } & GroupProps;
+type GhostDoorProps = {
+  spotColor?: string;
+  password?: string;
+  inputYPosition?: number;
+} & GroupProps;
 type GhostDoorState = { visible?: boolean; setVisible: (b: boolean) => void };
 
 /*
@@ -22,7 +26,12 @@ const GhostDoorContext = createContext({} as GhostDoorState);
 export const useGhostDoor = () => useContext(GhostDoorContext);
 
 export default function GhostDoor(props: GhostDoorProps) {
-  const { opacity = 0.6, password = "test", ...restProps } = props;
+  const {
+    inputYPosition = 1,
+    spotColor = "red",
+    password = "test",
+    ...restProps
+  } = props;
   const [stage, setStage] = useState(1);
 
   const [who, setWho] = useState("");
@@ -70,7 +79,7 @@ export default function GhostDoor(props: GhostDoorProps) {
 
   return (
     <group name="password-door" {...restProps}>
-      <group position-y={1} position-z={1} name="input-field">
+      <group position-y={inputYPosition} position-z={1} name="input-field">
         <MagicText stage={stage} visible={visible} />
         {stage != 3 && (
           <animated.group position-y={posY} scale={scale}>
@@ -117,7 +126,7 @@ export default function GhostDoor(props: GhostDoorProps) {
       </Collidable>
       <GhostDoorContext.Provider value={value}>
         <group position={[0, 0.1, 1.8]}>
-          <Spot strength={1} color="red" />
+          <Spot strength={1} color={spotColor} />
         </group>
       </GhostDoorContext.Provider>
     </group>
