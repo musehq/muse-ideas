@@ -11,6 +11,7 @@ import { GLTF } from "three-stdlib";
 import { extend, useFrame, GroupProps } from "@react-three/fiber";
 import { useLimiter, useModel } from "spacesvr";
 import { useDistortMat } from "../logic/distorMat";
+// import "../logic/CreationMaterial";
 
 type GLTFResult = GLTF & {
   nodes: {
@@ -45,15 +46,15 @@ export function TV(props: ModelProps) {
   const portalMaterial = useRef();
   const mesh = useRef();
 
-  // useFrame((state, delta) => {
-  //   mesh.current.material.uniforms.time.value += delta
-  // })
+  useFrame((state, delta) => {
+    mesh.current.material.uniforms.time.value += delta;
+  });
 
   return (
     <group {...props} dispose={null}>
       <group position={[0, 0, 49.13]}>
         <mesh ref={mesh} geometry={nodes.screen.geometry}>
-          {/* <creationMaterial resolution={30, 30, 1]} /> */}
+          <creationMaterial resolution={[30, 30, 1]} />
         </mesh>
         <mesh geometry={nodes["TV-Mat"].geometry} material={materials.TVMat1} />
         <mesh

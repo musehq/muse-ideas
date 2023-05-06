@@ -7,7 +7,7 @@ import { GLTF } from "three-stdlib";
 import { extend } from "@react-three/fiber";
 import { Vector3 } from "three";
 
-export const CreationMaterial = shaderMaterial(
+const CreationMaterial = shaderMaterial(
   {
     time: 0,
     resolution: new Vector3(),

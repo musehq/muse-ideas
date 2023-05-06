@@ -1,6 +1,5 @@
 import { Suspense, useRef } from "react";
 import { GroupProps } from "@react-three/fiber";
-import { findColliderMeshes } from "./utils/mesh";
 import { Model } from "spacesvr";
 import { Group } from "three";
 import { TV } from "./models/TV";
